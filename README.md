@@ -5,6 +5,9 @@ linux source code
 Make sure you get a RELEASE, not the latest source.
 
 ## Compilation
+
+* https://www.cyberciti.biz/tips/compiling-linux-kernel-26.html
+
 ```
 make
 ```
