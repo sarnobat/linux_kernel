@@ -1,4 +1,7 @@
-# linux
+# DEPRECATED. Use buidlroot. I never got this fully working but with Buildroot it was much easier. https://stackoverflow.com/a/49349237/714112
+
+-------
+# IGNORE
 linux source code
 ## Download
 
