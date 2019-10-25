@@ -1,8 +1,16 @@
-# DEPRECATED. Use buidlroot. I never got this fully working but with Buildroot it was much easier. https://stackoverflow.com/a/49349237/714112
 
+## Buildroot
+with Buildroot it was much easier. https://stackoverflow.com/a/49349237/714112
+
+
+    
+## Buildroot cheat    
+
+    unset PERL_MM_OPT && PATH=/bin/:/usr/local/bin:/usr/bin:/sbin ./build --download-dependencies qemu-buildroot
+    
 -------
-# IGNORE
-linux source code
+# DEPRECATED. Use buidlroot. I never got this fully working but 
+
 ## Download
 
 Make sure you get a RELEASE, not the latest source.
