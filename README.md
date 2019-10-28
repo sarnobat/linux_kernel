@@ -7,6 +7,12 @@ with Buildroot it was much easier. https://stackoverflow.com/a/49349237/714112
 ## Buildroot cheat    
 
     unset PERL_MM_OPT && PATH=/bin/:/usr/local/bin:/usr/bin:/sbin ./build --download-dependencies qemu-buildroot
+    run 
+    
+Inside guest
+
+    ifup -a
+
     
 -------
 # DEPRECATED. Use buidlroot. I never got this fully working but 
