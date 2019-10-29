@@ -14,6 +14,10 @@ Inside guest
     ifup -a
 
 There's no easy to rebuild packages like `wget` after adding print statements, because buildroot will download the source again and ovwerite it (I think). You'll have to drop back to Buildroot non-cheat version.
+
+Other useful things to note:
+* `--ctrl-c-host`
+* there's a graphml diagram
     
 -------
 # DEPRECATED. Use buidlroot. I never got this fully working but 
