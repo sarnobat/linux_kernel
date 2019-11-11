@@ -1,4 +1,4 @@
-cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/build-buildroot && \
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/ && \
 ./build-buildroot \
 	  --no-show-time \
 	  ;
