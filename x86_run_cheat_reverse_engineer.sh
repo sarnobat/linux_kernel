@@ -32,3 +32,6 @@ cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-m
 	V=0 \
 	all \
 ;
+
+make LKMC_PARSEC_BENCHMARK_SRCDIR="/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/parsec-benchmark" O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64 V=0 all
+usr/bin/make -j1 O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64 HOSTCC="/usr/bin/gcc" HOSTCXX="/usr/bin/g++" silentoldconfig
