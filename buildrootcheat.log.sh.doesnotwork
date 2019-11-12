@@ -1,0 +1,438 @@
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat
+
+sudo apt-get install \
+  g++-aarch64-linux-gnu \
+  g++-arm-linux-gnueabihf \
+  gcc-aarch64-linux-gnu \
+  gcc-arm-linux-gnueabihf \
+  git \
+  moreutils \
+  python3-pip \
+  rr \
+  tmux \
+  vinagre \
+  wget \
+;
+
+sudo apt-get build-dep \
+  qemu \
+;
+
+python3 -m pip install --user \
+  pexpect==4.6.0 \
+;
+
+unset PERL_MM_OPT
+PATH=/bin/:/usr/local/bin:/usr/bin:/sbin 
+
+# ./build-buildroot \
+#   --no-show-time \
+# ;
+
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/buildroot && \
+  make \
+  O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64 \
+  BR2_EXTERNAL=../../buildroot_packages/kernel_modules:../../buildroot_packages/lkmc_many_files:../../buildroot_packages/parsec_benchmark:../../buildroot_packages/sample_package \
+  qemu_x86_64_defconfig \
+;
+
+cat \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/buildroot_config/default \
+  '>>' \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/.config \
+;
+cat << 'EOF' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/.config
+BR2_JLEVEL=4
+BR2_DL_DIR="/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/download"
+# BR2_LINUX_KERNEL is not set
+BR2_GLOBAL_PATCH_DIR="../../patches/global"
+BR2_PACKAGE_BUSYBOX_CONFIG_FRAGMENT_FILES="../../busybox_config_fragment"
+BR2_PACKAGE_OVERRIDE_FILE="../../buildroot_override"
+BR2_ROOTFS_POST_BUILD_SCRIPT="../../rootfs-post-build-script"
+BR2_ROOTFS_USERS_TABLES="../../user_table"
+BR2_ROOTFS_OVERLAY="../../out/rootfs_overlay/x86_64"
+EOF
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/buildroot && \
+  make \
+  O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64 \
+  olddefconfig \
+;
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/buildroot && \
+  make \
+  'LKMC_PARSEC_BENCHMARK_SRCDIR="/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/parsec-benchmark"' \
+  O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64 \
+  V=0 \
+  all \
+;
+/usr/bin/make -j1 O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64 HOSTCC="/usr/bin/gcc" HOSTCXX="/usr/bin/g++" silentoldconfig
+# Check files that are touched by more than one package
+./support/scripts/check-uniq-files -t target /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/packages-file-list.txt
+./support/scripts/check-uniq-files -t staging /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/packages-file-list-staging.txt
+
+./support/scripts/check-uniq-files -t host /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/packages-file-list-host.txt
+
+/bin//sed -i -e '/# GENERIC_SERIAL$/s~^.*#~tty1::respawn:/sbin/getty -L  tty1 0 vt100 #~' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/inittab
+/bin//sed -i -e '/^#.*-o remount,rw \/$/s~^#\+~~' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/inittab
+if grep -q CONFIG_ASH=y ./.config; then grep -qsE '^/bin/ash$' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells || echo "/bin/ash" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells; fi
+if grep -q CONFIG_HUSH=y ./.config; then grep -qsE '^/bin/hush$' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells || echo "/bin/hush" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells; fi
+mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc
+echo "buildroot" > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/hostname
+/bin//sed -i -e '$a \127.0.1.1\tbuildroot' -e '/^127.0.1.1/d' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/hosts
+mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc
+echo "Welcome to Buildroot" > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/issue
+/bin//sed -i -e s,^root:[^:]*:,root::, /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shadow
+grep -qsE '^/bin/sh$' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells || echo "/bin/sh" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells
+rm -f /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/locales.nopurge
+for i in C en_US locale-archive; do echo $i >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/locales.nopurge; done
+for dir in ; do for langdir in $dir/*; do if [ -e "${langdir}" ]; then grep -qx "${langdir##*/}" /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/locales.nopurge || rm -rf $langdir; fi done; done
+if [ -d /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/X11/locale ]; then for lang in C en_US; do if [ -f /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/X11/locale/$lang/XLC_LOCALE ]; then echo "$lang/XLC_LOCALE: $lang"; fi done > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/X11/locale/locale.dir; fi
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/include /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/aclocal \
+	/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/lib/pkgconfig /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/pkgconfig \
+	/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/lib/cmake /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/cmake
+find /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/{lib,share}/ -name '*.cmake' -print0 | xargs -0 rm -f
+find /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/lib/ /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/lib/ /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/libexec/ \
+	\( -name '*.a' -o -name '*.la' \) -print0 | xargs -0 rm -f
+find: ‘/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/libexec/’: No such file or directory
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/gdb
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/bash-completion
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/zsh
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/man /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/man
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/info /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/info
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/doc /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/doc
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/gtk-doc
+rmdir /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share 2>/dev/null || true
+find /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target -type f \( -perm /111 -o -name '*.so*' \) -not \( -name 'libpthread*.so*' -o -name 'ld-*.so*' -o -name '*.ko' \) -print0 | xargs -0 /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/x86_64-buildroot-linux-gnu-strip --remove-section=.comment --remove-section=.note 2>/dev/null || true
+find /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/lib/ -type f -name 'libpthread*.so*' | \
+	xargs -r /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/x86_64-buildroot-linux-gnu-strip --remove-section=.comment --remove-section=.note --strip-debug
+find /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/lib/ -type f -name 'ld-*.so*' | \
+	xargs -r /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/x86_64-buildroot-linux-gnu-strip --remove-section=.comment --remove-section=.note --strip-debug
+test -f /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/ld.so.conf && \
+	{ echo "ERROR: we shouldn't have a /etc/ld.so.conf file"; exit 1; } || true
+test -d /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/ld.so.conf.d && \
+	{ echo "ERROR: we shouldn't have a /etc/ld.so.conf.d directory"; exit 1; } || true
+mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc
+( \
+	echo "NAME=Buildroot"; \
+	echo "VERSION=2018.08-g653eaa17"; \
+	echo "ID=buildroot"; \
+	echo "VERSION_ID=2018.08"; \
+	echo "PRETTY_NAME=\"Buildroot 2018.08\"" \
+) >  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/lib/os-release
+ln -sf ../usr/lib/os-release /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc
+touch /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs
+mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs
+rsync -auH /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/ /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target
+echo '#!/bin/sh' > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+echo "set -e" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+echo "chown -h -R 0:0 /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+cat ../../user_table >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/users_table.txt
+printf '   \n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/users_table.txt
+PATH="/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin:/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/sbin:/bin/:/usr/local/bin:/usr/bin:/sbin" /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/buildroot/support/scripts/mkusers /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/users_table.txt /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+cat system/device_table.txt > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/device_table.txt
+printf '   	/bin/busybox                     f 4755 0  0 - - - - -\n\n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/device_table.txt
+echo "/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/makedevs -d /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/device_table.txt /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+printf '   	tar cf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/rootfs.common.tar --numeric-owner --exclude=THIS_IS_NOT_YOUR_ROOT_FILESYSTEM -C /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target .\n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+chmod a+x /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+PATH="/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin:/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/sbin:/bin/:/usr/local/bin:/usr/bin:/sbin" /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/fakeroot -- /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+rootdir=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target
+table='/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/device_table.txt'
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2
+mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2
+echo '#!/bin/sh' > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+echo "set -e" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+printf '   	mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/target\n	tar xf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/rootfs.common.tar -C /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/target\n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+printf '   \n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+printf '   	rm -f /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/images/rootfs.ext2\n	/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/sbin/mkfs.ext2 -d /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/target -r 1 -N 0 -m 5 -L "" -O ^64bit /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/images/rootfs.ext2 "512M" || { ret=$?; echo "*** Maybe you need to increase the filesystem size (BR2_TARGET_ROOTFS_EXT2_SIZE)" 1>&2; exit $ret; }\n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+chmod a+x /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+PATH="/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin:/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/sbin:/bin/:/usr/local/bin:/usr/bin:/sbin" /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/fakeroot -- /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+
+/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/qemu/default/opt/qemu-img \
+  -T pr_manager_run,file=/dev/null \
+  convert \
+  -f raw \
+  -O qcow2 \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/images/rootfs.ext2 \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/images/rootfs.ext2.qcow2 \
+;
+
+./build-linux \
+  --no-show-time \
+;
+
+cp \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/linux_config/buildroot-x86_64 \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/linux/default/x86_64/.config \
+;
+/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/scripts/kconfig/merge_config.sh \
+  -m \
+  -O /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/linux/default/x86_64 \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/linux/default/x86_64/.config \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/linux_config/min \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/linux_config/default \
+;
+
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux && \
+  make \
+  -j 4 \
+  ARCH=x86 \
+  CROSS_COMPILE=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/usr/bin/x86_64-buildroot-linux-gnu- \
+  CC=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/usr/bin/x86_64-buildroot-linux-gnu-gcc \
+  O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/linux/default/x86_64 \
+  olddefconfig \
+;
+
+scripts/kconfig/conf  --olddefconfig Kconfig
+
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux && \
+  KBUILD_BUILD_VERSION=1 \
+  KBUILD_BUILD_USER=lkmc \
+  KBUILD_BUILD_HOST=527a3db363a3bd7e6ae0a77da809e01847a9931c \
+  KBUILD_BUILD_TIMESTAMP='Thu Jan  1 00:00:00 UTC 1970' \
+  make \
+  -j 4 \
+  ARCH=x86 \
+  CROSS_COMPILE=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/usr/bin/x86_64-buildroot-linux-gnu- \
+  CC=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/usr/bin/x86_64-buildroot-linux-gnu-gcc \
+  O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/linux/default/x86_64 \
+;
+
+scripts/kconfig/conf  --syncconfig Kconfig
+
+
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux && \
+  make \
+  -j 4 \
+  ARCH=x86 \
+  CROSS_COMPILE=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/usr/bin/x86_64-buildroot-linux-gnu- \
+  CC=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/usr/bin/x86_64-buildroot-linux-gnu-gcc \
+  O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/linux/default/x86_64 \
+  INSTALL_MOD_PATH=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/rootfs_overlay/x86_64/lkmc \
+  modules_install \
+;
+
+./build-userland \
+  --no-show-time \
+;
+
+PATH="/usr/lib/ccache:${PATH}" \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/usr/bin/x86_64-buildroot-linux-gnu-g++ \
+  -I /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat \
+  -O0 \
+  -Wall \
+  -Werror \
+  -Wextra \
+  -Wno-unused-function \
+  -ggdb3 \
+  -fno-pie \
+  -no-pie \
+  -pedantic \
+  -std=c++17 \
+  -o /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/userland/default/x86_64/cpp/thread_get_id.out \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/userland/cpp/thread_get_id.cpp \
+  -pthread \
+  -lm \
+;
+
+PATH="/usr/lib/ccache:${PATH}" \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/usr/bin/x86_64-buildroot-linux-gnu-g++ \
+  -I /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat \
+  -O0 \
+  -Wall \
+  -Werror \
+  -Wextra \
+  -Wno-unused-function \
+  -ggdb3 \
+  -fno-pie \
+  -no-pie \
+  -pedantic \
+  -std=c++17 \
+  -o /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/userland/default/x86_64/cpp/thread_return_value.out \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/userland/cpp/thread_return_value.cpp \
+  -pthread \
+  -lm \
+;
+
+./build-modules \
+  --no-show-time \
+;
+
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/kernel_modules/x86_64/kernel_modules && \
+  make \
+  -j 4 \
+  ARCH=x86 \
+  CC=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/usr/bin/x86_64-buildroot-linux-gnu-gcc \
+  'CCFLAGS=-I /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat' \
+  CROSS_COMPILE=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/usr/bin/x86_64-buildroot-linux-gnu- \
+  LINUX_DIR=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/linux/default/x86_64 \
+  M=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/kernel_modules/x86_64/kernel_modules \
+  'OBJECT_FILES=debugfs.o dep2.o hello2.o character_device_create.o kthread.o qemu_edu.o panic.o oops.o sysfs.o pmccntr.o fops.o kstrto.o poll.o virt_to_phys.o kprobe_example.o sleep.o dump_stack.o dep.o init_module.o seq_file.o seq_file_single_open.o ring0.o kthreads.o work_from_work.o ioctl.o vermagic.o netlink.o hello.o module_info.o procfs.o irq.o timer.o strlen_overflow.o mmap.o memcpy_overflow.o warn_on.o character_device.o pci_min.o schedule.o wait_queue.o anonymous_inode.o vermagic_fail.o wait_queue2.o params.o workqueue_cheat.o float.o myprintk.o' \
+;
+make -C '/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/linux/default/x86_64' M='/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/kernel_modules/x86_64/kernel_modules'
+
+./copy-overlay \
+  --no-show-time \
+;
+
+cp \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/rootfs_overlay/etc/ld.so.cache \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/rootfs_overlay/x86_64/etc/ld.so.cache \
+;
+
+./build-qemu \
+  --no-show-time \
+;
+
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/qemu/default/opt && \
+  PATH="/usr/lib/ccache:${PATH}" \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/qemu/configure \
+  --enable-trace-backends=simple \
+  --target-list=x86_64-softmmu \
+  --enable-sdl \
+;
+
+
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/qemu/default/opt && \
+  PATH="/usr/lib/ccache:${PATH}" \
+  make \
+  -j 4 \
+;
+
+
+./build-buildroot \
+  --no-show-time \
+;
+
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/buildroot && \
+  make \
+  O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64 \
+  BR2_EXTERNAL=../../buildroot_packages/kernel_modules:../../buildroot_packages/lkmc_many_files:../../buildroot_packages/parsec_benchmark:../../buildroot_packages/sample_package \
+  qemu_x86_64_defconfig \
+;
+
+cat \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/buildroot_config/default \
+  '>>' \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/.config \
+;
+cat << 'EOF' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/.config
+BR2_JLEVEL=4
+BR2_DL_DIR="/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/download"
+# BR2_LINUX_KERNEL is not set
+BR2_GLOBAL_PATCH_DIR="../../patches/global"
+BR2_PACKAGE_BUSYBOX_CONFIG_FRAGMENT_FILES="../../busybox_config_fragment"
+BR2_PACKAGE_OVERRIDE_FILE="../../buildroot_override"
+BR2_ROOTFS_POST_BUILD_SCRIPT="../../rootfs-post-build-script"
+BR2_ROOTFS_USERS_TABLES="../../user_table"
+BR2_ROOTFS_OVERLAY="../../out/rootfs_overlay/x86_64"
+EOF
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/buildroot && \
+  make \
+  O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64 \
+  olddefconfig \
+;
+
+cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/buildroot && \
+  make \
+  'LKMC_PARSEC_BENCHMARK_SRCDIR="/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/parsec-benchmark"' \
+  O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64 \
+  V=0 \
+  all \
+;
+
+usr/bin/make -j1 O=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64 HOSTCC="/usr/bin/gcc" HOSTCXX="/usr/bin/g++" silentoldconfig
+
+
+./support/scripts/check-uniq-files -t target /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/packages-file-list.txt
+./support/scripts/check-uniq-files -t staging /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/packages-file-list-staging.txt
+
+/bin//sed -i -e '/# GENERIC_SERIAL$/s~^.*#~tty1::respawn:/sbin/getty -L  tty1 0 vt100 #~' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/inittab
+/bin//sed -i -e '/^#.*-o remount,rw \/$/s~^#\+~~' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/inittab
+if grep -q CONFIG_ASH=y ./.config; then grep -qsE '^/bin/ash$' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells || echo "/bin/ash" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells; fi
+
+if grep -q CONFIG_HUSH=y ./.config; then grep -qsE '^/bin/hush$' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells || echo "/bin/hush" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells; fi
+
+mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc
+echo "buildroot" > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/hostname
+/bin//sed -i -e '$a \127.0.1.1\tbuildroot' -e '/^127.0.1.1/d' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/hosts
+mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc
+echo "Welcome to Buildroot" > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/issue
+/bin//sed -i -e s,^root:[^:]*:,root::, /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shadow
+grep -qsE '^/bin/sh$' /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells || echo "/bin/sh" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/shells
+rm -f /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/locales.nopurge
+for i in C en_US locale-archive; do echo $i >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/locales.nopurge; done
+for dir in ; do for langdir in $dir/*; do if [ -e "${langdir}" ]; then grep -qx "${langdir##*/}" /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/locales.nopurge || rm -rf $langdir; fi done; done
+if [ -d /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/X11/locale ]; then for lang in C en_US; do if [ -f /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/X11/locale/$lang/XLC_LOCALE ]; then echo "$lang/XLC_LOCALE: $lang"; fi done > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/X11/locale/locale.dir; fi
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/include /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/aclocal \
+	/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/lib/pkgconfig /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/pkgconfig \
+	/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/lib/cmake /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/cmake
+find /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/{lib,share}/ -name '*.cmake' -print0 | xargs -0 rm -f
+find /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/lib/ /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/lib/ /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/libexec/ \
+	\( -name '*.a' -o -name '*.la' \) -print0 | xargs -0 rm -f
+find: ‘/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/libexec/’: No such file or directory
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/gdb
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/bash-completion
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/zsh
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/man /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/man
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/info /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/info
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/doc /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/doc
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share/gtk-doc
+rmdir /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/share 2>/dev/null || true
+find /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target -type f \( -perm /111 -o -name '*.so*' \) -not \( -name 'libpthread*.so*' -o -name 'ld-*.so*' -o -name '*.ko' \) -print0 | xargs -0 /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/x86_64-buildroot-linux-gnu-strip --remove-section=.comment --remove-section=.note 2>/dev/null || true
+find /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/lib/ -type f -name 'libpthread*.so*' | \
+	xargs -r /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/x86_64-buildroot-linux-gnu-strip --remove-section=.comment --remove-section=.note --strip-debug
+find /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/lib/ -type f -name 'ld-*.so*' | \
+	xargs -r /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/x86_64-buildroot-linux-gnu-strip --remove-section=.comment --remove-section=.note --strip-debug
+test -f /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/ld.so.conf && \
+	{ echo "ERROR: we shouldn't have a /etc/ld.so.conf file"; exit 1; } || true
+test -d /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc/ld.so.conf.d && \
+	{ echo "ERROR: we shouldn't have a /etc/ld.so.conf.d directory"; exit 1; } || true
+mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc
+( \
+	echo "NAME=Buildroot"; \
+	echo "VERSION=2018.08-g653eaa17"; \
+	echo "ID=buildroot"; \
+	echo "VERSION_ID=2018.08"; \
+	echo "PRETTY_NAME=\"Buildroot 2018.08\"" \
+) >  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr/lib/os-release
+ln -sf ../usr/lib/os-release /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/etc
+
+touch /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/usr
+
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs
+mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs
+rsync -auH /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/target/ /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target
+echo '#!/bin/sh' > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+echo "set -e" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+echo "chown -h -R 0:0 /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+cat ../../user_table >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/users_table.txt
+printf '   \n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/users_table.txt
+PATH="/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin:/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/sbin:/bin/:/usr/local/bin:/usr/bin:/sbin" /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/buildroot/support/scripts/mkusers /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/users_table.txt /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+cat system/device_table.txt > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/device_table.txt
+printf '   	/bin/busybox                     f 4755 0  0 - - - - -\n\n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/device_table.txt
+echo "/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/makedevs -d /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/device_table.txt /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+printf '   	tar cf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/rootfs.common.tar --numeric-owner --exclude=THIS_IS_NOT_YOUR_ROOT_FILESYSTEM -C /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target .\n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+chmod a+x /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+PATH="/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin:/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/sbin:/bin/:/usr/local/bin:/usr/bin:/sbin" /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/fakeroot -- /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/fakeroot.fs
+rootdir=/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/target
+table='/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/device_table.txt'
+
+rm -rf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2
+mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2
+echo '#!/bin/sh' > /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+echo "set -e" >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+printf '   	mkdir -p /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/target\n	tar xf /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/rootfs.common.tar -C /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/target\n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+printf '   \n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+printf '   	rm -f /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/images/rootfs.ext2\n	/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/sbin/mkfs.ext2 -d /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/target -r 1 -N 0 -m 5 -L "" -O ^64bit /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/images/rootfs.ext2 "512M" || { ret=$?; echo "*** Maybe you need to increase the filesystem size (BR2_TARGET_ROOTFS_EXT2_SIZE)" 1>&2; exit $ret; }\n' >> /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+chmod a+x /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+PATH="/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin:/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/sbin:/bin/:/usr/local/bin:/usr/bin:/sbin" /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/host/bin/fakeroot -- /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/build/buildroot-fs/ext2/fakeroot
+
+/media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/qemu/default/opt/qemu-img \
+  -T pr_manager_run,file=/dev/null \
+  convert \
+  -f raw \
+  -O qcow2 \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/images/rootfs.ext2 \
+  /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/out/buildroot/build/default/x86_64/images/rootfs.ext2.qcow2 \
+;
+
