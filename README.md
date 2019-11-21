@@ -6,6 +6,7 @@ with Buildroot it was much easier. https://stackoverflow.com/a/49349237/714112
     
 ## Buildroot cheat    
 
+Kernel:
     unset PERL_MM_OPT && PATH=/bin/:/usr/local/bin:/usr/bin:/sbin ./build --download-dependencies qemu-buildroot | tee /tmp/buildrootcheat.log
     run 
     
@@ -13,7 +14,8 @@ Inside guest
 
     ifup -a
 
--There's no easy to rebuild packages like `wget` after adding print statements, because buildroot will download the source again and ovwerite it (I think). You'll have to drop back to Buildroot non-cheat version.-
+Busybox:
+~~There's no easy to rebuild packages like `wget` after adding print statements, because buildroot will download the source again and ovwerite it (I think). You'll have to drop back to Buildroot non-cheat version.
 
     unset PERL_MM_OPT && PATH=/bin/:/usr/local/bin:/usr/bin:/sbin  ./build-buildroot -- busybox-rebuild
 
