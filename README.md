@@ -8,7 +8,7 @@ with Buildroot it was much easier. https://stackoverflow.com/a/49349237/714112
 
 Kernel:
 
-unset PERL_MM_OPT && PATH=/bin/:/usr/local/bin:/usr/bin:/sbin ./build --download-dependencies qemu-buildroot | tee /tmp/buildrootcheat.log
+    unset PERL_MM_OPT && PATH=/bin/:/usr/local/bin:/usr/bin:/sbin ./build --download-dependencies qemu-buildroot | tee /tmp/buildrootcheat.log
     run 
     
 Inside guest
