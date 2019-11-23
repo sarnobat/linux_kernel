@@ -23,7 +23,16 @@ Busybox:
 Other useful things to note:
 * `--ctrl-c-host`
 * there's a graphml diagram
-    
+
+### Gdb
+
+Kernel (https://cirosantilli.com/linux-kernel-module-cheat/#gdb-step-debug-kernel-post-boot):
+
+    ./run
+    ./run-gdb
+
+
+
 -------
 # DEPRECATED. Use buidlroot. I never got this fully working but 
 
