@@ -52,3 +52,7 @@ make
 ```
 qemu-system-x86_64 -kernel /boot/vmlinuz-5.3.0 -initrd /boot/initrd.img-5.3.0
 ```
+
+## Kernel repository history
+
+* https://www.youtube.com/watch?v=5iFnzr73XXk&t=5866s&ab_channel=DarrickWong
