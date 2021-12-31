@@ -1,8 +1,8 @@
 
 ## Buildroot
-with Buildroot it was much easier. https://stackoverflow.com/a/49349237/714112
-
-
+with Buildroot it was much easier. 
+* arm: https://stackoverflow.com/a/49349237/714112
+* x86: https://unix.stackexchange.com/a/543075/7000
     
 ## Buildroot cheat
 
