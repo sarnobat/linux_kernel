@@ -8,8 +8,7 @@ with Buildroot it was much easier.
 
 https://github.com/cirosantilli/linux-kernel-module-cheat
 
-2021-12-31: not working? 
-`--2021-12-31 14:12:47--  http://isl.gforge.inria.fr/isl-0.18.tar.xz`
+2021-12-31: not working? Maybe I need to try on a version of Ubuntu that is still supported.
 
 Kernel:
 
