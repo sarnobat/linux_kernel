@@ -1,7 +1,10 @@
+# Here is what I'm trying to find the nested shell commands of:
 # cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/build-buildroot && \
 # 	./build-buildroot \
 # 	  --no-show-time \
 # 	  ;
+
+# Here is what I've found so far
 
 cd /media/sarnobat/unmirrored/trash/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/buildroot && \
 	  make \
