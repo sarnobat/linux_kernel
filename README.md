@@ -4,7 +4,9 @@ with Buildroot it was much easier. https://stackoverflow.com/a/49349237/714112
 
 
     
-## Buildroot cheat    
+## Buildroot cheat
+
+https://github.com/cirosantilli/linux-kernel-module-cheat
 
 Kernel:
 
