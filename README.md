@@ -8,6 +8,9 @@ with Buildroot it was much easier. https://stackoverflow.com/a/49349237/714112
 
 https://github.com/cirosantilli/linux-kernel-module-cheat
 
+2021-12-31: not working? 
+`--2021-12-31 14:12:47--  http://isl.gforge.inria.fr/isl-0.18.tar.xz`
+
 Kernel:
 
     unset PERL_MM_OPT && PATH=/bin/:/usr/local/bin:/usr/bin:/sbin ./build --download-dependencies qemu-buildroot | tee /tmp/buildrootcheat.log
