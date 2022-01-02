@@ -41,6 +41,11 @@ ln -snf /root/buildroot/output/host/x86_64-buildroot-linux-uclibc/sysroot /root/
 root@b218928410d1:~/buildroot#
 ```
 ### Running
+run this to start it:
+```
+/buildroot_output/images/start-qemu.sh
+/root/buildroot/output/images/start-qemu.sh
+```
 TODO: modify this for docker
 ```
 qemu-system-x86_64 -kernel /boot/vmlinuz-4.15.0-133-generic -initrd /boot/initrd.img-4.15.0-133-generic
