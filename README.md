@@ -21,6 +21,8 @@ https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/r
 50945  ./scripts/run.sh make
 50946  ./scripts/run.sh make | tee /tmp/docker.log &!
 ```
+
+TODO: modify this for docker
 ```
 qemu-system-x86_64 -kernel /boot/vmlinuz-4.15.0-133-generic -initrd /boot/initrd.img-4.15.0-133-generic
 ```
