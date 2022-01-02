@@ -21,6 +21,9 @@ https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/r
 50945  ./scripts/run.sh make
 50946  ./scripts/run.sh make | tee /tmp/docker.log &!
 ```
+```
+qemu-system-x86_64 -kernel /boot/vmlinuz-4.15.0-133-generic -initrd /boot/initrd.img-4.15.0-133-generic
+```
 ## Buildroot
 with Buildroot it was much easier. 
 * arm: https://stackoverflow.com/a/49349237/714112
