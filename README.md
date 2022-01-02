@@ -26,6 +26,8 @@ https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/r
 From inside container:
 root@b218928410d1: cd ~/buildroot/ && make
 
+After editing source code, you need to stop the container and create a new one. It will preserve your code changes to wget.c (how?) and after building from the original commands (takes just a few mins) - you will see your new print statements. I don't understand exactly why it works but at least it does.
+
 ```
 50930  docker ps
 50931  ./scripts/run.sh make qemu_x86_64_defconfig menuconfig
@@ -90,6 +92,14 @@ OK
 
 Welcome to Buildroot
 buildroot login:
+```
+
+```
+# wget 'netgear.rohidekar.com'
+SRIDHAR Connecting to netgear.rohidekar.com (73.222.175.43:80)
+saving to 'index.html'
+index.html           100% |********************************|  1718  0:00:00 ETA
+'index.html' saved
 ```
 
 ## Buildroot
