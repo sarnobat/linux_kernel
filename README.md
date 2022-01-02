@@ -1,14 +1,22 @@
+## Docker buildroot
+2022: I'm having better luck with this but I haven't reached the end yet
+https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/run.sh
 
 ## Buildroot
 with Buildroot it was much easier. 
 * arm: https://stackoverflow.com/a/49349237/714112
 * x86: https://unix.stackexchange.com/a/543075/7000
-    
+
+2021: Not Working on ubuntu 16 (which recently reached end of life)
+2019: Worked on ubuntu 16 (when it was still supported)
+
 ## Buildroot cheat
 
 https://github.com/cirosantilli/linux-kernel-module-cheat
 
 2021-12-31: not working? Maybe I need to try on a version of Ubuntu that is still supported.
+2021: Not Working on ubuntu 16 (which recently reached end of life)
+2019: Worked on ubuntu 16 (when it was still supported)
 
 Kernel:
 
