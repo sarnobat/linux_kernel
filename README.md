@@ -108,6 +108,12 @@ index.html           100% |********************************|  1718  0:00:00 ETA
 The modified busybox seems to come from this native file:
 ```/media/sarnobat/ebay/trash/docker/volumes/d02844a1aa32dcc42ab075b1c2f63f5b7a70673bcaf6606ae9bdb0198ca11dd6/_data/target/bin/busybox```
 
+#### Docker layers
+```
+  132  docker images -a
+  133  docker image inspect f0f1e5b912da
+```
+
 ## Buildroot
 with Buildroot it was much easier. 
 * arm: https://stackoverflow.com/a/49349237/714112
