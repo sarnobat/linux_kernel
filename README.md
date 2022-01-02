@@ -50,7 +50,21 @@ TODO: modify this for docker
 ```
 qemu-system-x86_64 -kernel /boot/vmlinuz-4.15.0-133-generic -initrd /boot/initrd.img-4.15.0-133-generic
 ```
+#### Log output
+```
+Starting network: udhcpc: started, v1.31.1
+random: mktemp: uninitialized urandom read (6 bytes read)
+udhcpc: sending discover
+udhcpc: sending select for 10.0.2.15
+udhcpc: lease of 10.0.2.15 obtained, lease time 86400
+deleting routers
+random: mktemp: uninitialized urandom read (6 bytes read)
+adding dns 10.0.2.3
+OK
 
+Welcome to Buildroot
+buildroot login:
+```
 
 ## Buildroot
 with Buildroot it was much easier. 
