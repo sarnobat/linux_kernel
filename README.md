@@ -1,5 +1,24 @@
 ## Docker buildroot
 
+-   [Docker buildroot](#docker-buildroot)
+    -   [Compilation](#compilation)
+    -   [Running](#running)
+-   [Buildroot](#buildroot)
+-   [Code comprehension](#code-comprehension)
+    -   [runtime log](#runtime-log)
+    -   [print statements in code](#print-statements-in-code)
+-   [Old (not working)](#old-not-working)
+    -   [Buildroot cheat](#buildroot-cheat)
+        -   [Gdb](#gdb)
+        -   [My attempts](#my-attempts)
+-   [DEPRECATED. Use buildroot. I never got this fully working
+    but](#deprecated.-use-buildroot.-i-never-got-this-fully-working-but)
+    -   [Download](#download)
+    -   [Compilation](#compilation-1)
+    -   [Running](#running-1)
+    -   [Kernel repository history](#kernel-repository-history)
+
+
 ### Compilation
 2022: I'm having better luck with this
 https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/run.sh
