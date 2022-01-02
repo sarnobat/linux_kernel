@@ -32,6 +32,52 @@ with Buildroot it was much easier.
 2021: Not Working on ubuntu 16 (which recently reached end of life)
 2019: Worked on ubuntu 16 (when it was still supported)
 
+## Code comprehension
+```
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/cli_function.py:152:        print('  SRIDHAR cli_function::CliFunction::_do_main()')
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/cli_function.py:240:        print('  SRIDHAR cli_noexit')
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/cli_function.py:261:        print('SRIDHAR cli_function::CliFunction::cli_noexit()')
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/common.py:45:print('  SRIDHAR consts[root_dir] = ' + consts['root_dir'])
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/common.py:749:        print('  SRIDHAR: common::LkmcCliFunction::_init_env() env[buildroot_rootfs_raw_file] = ' + env['buildroot_rootfs_raw_file'])
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/common.py:1314:                        print('  SRIDHAR common::LkmcCliFunction::main()')
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/common.py:1367:        print('  SRIDHAR raw_to_qcow2()')
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/drivers/net/ethernet/intel/fm10k/fm10k_pci.c:1836:printk("SRIDHAR fm10k_up() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/drivers/staging/wilc1000/wilc_wfi_cfgoperations.c:266:printf("SRIDHAR connect() - begin 2\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/drivers/block/xen-blkback/xenbus.c:839:printf("SRIDHAR connect()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/tcp_output.c:1027:printk("SRIDHAR __tcp_transmit_skb() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/tcp_output.c:1129:printk("SRIDHAR __tcp_transmit_skb() - send_check\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/tcp_output.c:2331:printk("SRIDHAR tcp_write_xmit() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/tcp_ipv4.c:620:printk("SRIDHAR __tcp_v4_send_check()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/tcp_ipv4.c:1414:printk("SRIDHAR tcp_v4_syn_recv_sock() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/tcp_ipv4.c:2605:printk("SRIDHAR tcp_sk_init() - begin");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/af_inet.c:609:/*printf("SRIDHAR __inet_stream_connect()\n");*/
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/af_inet.c:610:/*fprintf("SRIDHAR __inet_stream_connect()\n");*/
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/af_inet.c:611:printk("SRIDHAR __inet_stream_connect() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/ip_output.c:101:printk("SRIDHAR __ip_local_out() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/ip_output.c:122:printk("SRIDHAR ip_local_out() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/ip_output.c:446:printk("SRIDHAR __ip_queue_xmit() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/ipv4/ip_output.c:1390:printk("SRIDHAR __ip_make_skb() - begin\b");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/socket.c:1821:printk("SRIDHAR __sys_connect()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/socket.c:1845:	printk("SRIDHAR SYSCALL_DEFINE3()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/socket.c:2317:printk("SRIDHAR __sys_sendmsg()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/socket.c:2705:printk("SRIDHAR socket.c::SYSCALL_DEFINE2()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/netfilter/core.c:270:	printk("SRIDHAR nf_hook_entry_head() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/net/compat.c:724:printk("SRIDHAR COMPAT_SYSCALL_DEFINE2()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/tools/usb/usbip/src/usbipd.c:430:printf("SRIDHAR do_getaddrinfo() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/include/linux/netfilter.h:216:printk("SRIDHAR nf_hook() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/include/net/ip.h:198:	printk("SRIDHAR ip_queue_xmit()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/include/net/l3mdev.h:178:printk("SRIDHAR l3mdev_l3_out() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/linux/include/net/l3mdev.h:194:	printk("SRIDHAR l3mdev_ip_out() - begin\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/qemu/roms/edk2/StdLib/BsdSocketLib/connect.c:69:  printf("SRIDHAR connect() - begin 3\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/submodules/qemu/roms/edk2/AppPkg/Applications/Python/Python-2.7.2/Modules/getaddrinfo.c:247:printf("SRIDHAR getaddrinfo()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/userland/posix/wget.c:30:printf("SRIDHAR wget\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/socket.c:1821:printk("SRIDHAR __sys_connect()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/socket.c:1845:	printk("SRIDHAR SYSCALL_DEFINE3()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/socket.c:2317:printk("SRIDHAR __sys_sendmsg()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/socket.c:2705:printk("SRIDHAR socket.c::SYSCALL_DEFINE2()\n");
+/media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/shell_helpers.py:368:            print('  SRIDHAR cmd = ' + ' '.join(cmd))
+```
+# Old (not working)
 ## Buildroot cheat
 
 https://github.com/cirosantilli/linux-kernel-module-cheat
