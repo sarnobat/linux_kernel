@@ -26,7 +26,7 @@ https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/r
 From inside container:
 root@b218928410d1: cd ~/buildroot/ && make
 
--After editing source code, you need to stop the container and create a new one. It will preserve your code changes to wget.c (how?) and- After building from the original commands (takes just a few mins) - you will see your new print statements. I don't understand exactly why it works but at least it does. I think it worked better when I used `scripts/run.sh` rather than interactively running the make file from inside the interactive container.
+<s>After editing source code, you need to stop the container and create a new one. It will preserve your code changes to wget.c (how?) and</s> After building from the original commands (takes just a few mins) - you will see your new print statements. I don't understand exactly why it works but at least it does. I think it worked better when I used `scripts/run.sh` rather than interactively running the make file from inside the interactive container.
 
 (recommended) From outside the container:
 ```
