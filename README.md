@@ -1,4 +1,6 @@
 ## Docker buildroot
+
+### Compilation
 2022: I'm having better luck with this but I haven't reached the end yet
 https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/run.sh
 
@@ -21,11 +23,30 @@ https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/r
 50945  ./scripts/run.sh make
 50946  ./scripts/run.sh make | tee /tmp/docker.log &!
 ```
+#### Log output
+```
+Creating regular file /root/buildroot/output/images/rootfs.ext2
+Creating filesystem with 61440 1k blocks and 15360 inodes
+Filesystem UUID: 9fd1248a-5cbc-4177-acc2-f1506ec9389b
+Superblock backups stored on blocks:
+	8193, 24577, 40961, 57345
 
+Allocating group tables: done
+Writing inode tables: done
+Copying files into the device: done
+Writing superblocks and filesystem accounting information: done
+
+ln -snf /root/buildroot/output/host/x86_64-buildroot-linux-uclibc/sysroot /root/buildroot/output/staging
+>>>   Executing post-image script board/qemu/post-image.sh
+root@b218928410d1:~/buildroot#
+```
+### Running
 TODO: modify this for docker
 ```
 qemu-system-x86_64 -kernel /boot/vmlinuz-4.15.0-133-generic -initrd /boot/initrd.img-4.15.0-133-generic
 ```
+
+
 ## Buildroot
 with Buildroot it was much easier. 
 * arm: https://stackoverflow.com/a/49349237/714112
