@@ -35,6 +35,13 @@ with Buildroot it was much easier.
 2019: Worked on ubuntu 16 (when it was still supported)
 
 ## Code comprehension
+
+### runtime log
+
+* `/Users/sarnobat/mwk.git/snippets/basic_clusters_still_need_human_sorting/code/snpt_1633771455105_0__linux_code_comprehension_1.mwk`
+* `/Users/sarnobat/mwk.git/snippets/basic_clusters_still_need_human_sorting/code/snpt_1633771455134_0__linux_code_comprehension_2.mwk`
+
+### print statements in code
 ```
 /media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/cli_function.py:152:        print('  SRIDHAR cli_function::CliFunction::_do_main()')
 /media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/cli_function.py:240:        print('  SRIDHAR cli_noexit')
