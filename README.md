@@ -1,7 +1,7 @@
 ## Docker buildroot
 
 ### Compilation
-2022: I'm having better luck with this but I haven't reached the end yet
+2022: I'm having better luck with this
 https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/run.sh
 
 ```
