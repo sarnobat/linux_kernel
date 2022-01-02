@@ -2,6 +2,25 @@
 2022: I'm having better luck with this but I haven't reached the end yet
 https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/run.sh
 
+```
+50930  docker ps
+50931  ./scripts/run.sh make qemu_x86_64_defconfig menuconfig
+50932  ./scripts/run.sh bash
+50933  docker build -t  .
+50934  docker run -i advancedclimatesystems/buildroot /bin/bash
+50935  disown %1
+50936  cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot
+50937  docker run -i  advancedclimatesystems/buildroot /usr/bin/find
+50938  docker run -i  advancedclimatesystems/buildroot /scripts/run.sh make qemu_x86_64_defconfig menuconfig
+50939  docker run -i  advancedclimatesystems/buildroot make
+50940  ./scripts/run.sh make raspberrypi2_defconfig menuconfig
+50941  ./scripts/run.sh make menuconfig
+50942  docker run -i --name buildroot_output advancedclimatesystems/buildroot /bin/echo "Data only."
+50943  ./scripts/run.sh make menuconfig
+50944  ./scripts/run.sh make qemu_x86_64_defconfig menuconfig
+50945  ./scripts/run.sh make
+50946  ./scripts/run.sh make | tee /tmp/docker.log &!
+```
 ## Buildroot
 with Buildroot it was much easier. 
 * arm: https://stackoverflow.com/a/49349237/714112
