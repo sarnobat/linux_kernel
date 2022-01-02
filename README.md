@@ -29,6 +29,10 @@ root@b218928410d1: cd ~/buildroot/ && make
 After editing source code, you need to stop the container and create a new one. It will preserve your code changes to wget.c (how?) and after building from the original commands (takes just a few mins) - you will see your new print statements. I don't understand exactly why it works but at least it does.
 
 ```
+cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot
+```
+
+```
 50930  docker ps
 50931  ./scripts/run.sh make qemu_x86_64_defconfig menuconfig
 50932  ./scripts/run.sh bash
