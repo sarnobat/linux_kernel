@@ -31,7 +31,9 @@ After editing source code, you need to stop the container and create a new one. 
 (recommended) From outside the container:
 ```
 cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot
+scripts/run.sh make busybox-rebuild # if you change wget.c
 scripts/run.sh make
+# looks like you don't need to destroy and rebuild the container afterall
 ```
 
 ```
