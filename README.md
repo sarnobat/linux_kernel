@@ -20,14 +20,6 @@
 
 
 ### Compilation
-2022: I'm having better luck with this
-https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/run.sh
-
-From inside container:
-root@b218928410d1: cd ~/buildroot/ && make
-
-<s>After editing source code, you need to stop the container and create a new one. It will preserve your code changes to wget.c (how?) and</s> After building from the original commands (takes just a few mins) - you will see your new print statements. I don't understand exactly why it works but at least it does. I think it worked better when I used `scripts/run.sh` rather than interactively running the make file from inside the interactive container.
-
 (recommended) From outside the container:
 ```
 cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot
@@ -36,6 +28,16 @@ cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot
 scripts/run.sh make
 # looks like you don't need to destroy and rebuild the container afterall
 ```
+
+2022: I'm having better luck with this
+https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/run.sh
+
+From inside container:
+root@b218928410d1: cd ~/buildroot/ && make
+
+<s>After editing source code, you need to stop the container and create a new one. It will preserve your code changes to wget.c (how?) and</s> After building from the original commands (takes just a few mins) - you will see your new print statements. I don't understand exactly why it works but at least it does. I think it worked better when I used `scripts/run.sh` rather than interactively running the make file from inside the interactive container.
+
+
 
 ```
 50930  docker ps
