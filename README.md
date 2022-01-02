@@ -23,6 +23,9 @@
 2022: I'm having better luck with this
 https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/run.sh
 
+From inside container:
+root@b218928410d1: cd ~/buildroot/ && make
+
 ```
 50930  docker ps
 50931  ./scripts/run.sh make qemu_x86_64_defconfig menuconfig
@@ -60,6 +63,10 @@ ln -snf /root/buildroot/output/host/x86_64-buildroot-linux-uclibc/sysroot /root/
 root@b218928410d1:~/buildroot#
 ```
 ### Running
+
+From inside container:
+root@b218928410d1: ~/buildroot# sh /buildroot_output/images/start-qemu.sh 
+
 run this to start it:
 ```
 /buildroot_output/images/start-qemu.sh
