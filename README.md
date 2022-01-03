@@ -78,6 +78,7 @@ root@b218928410d1:~/buildroot#
 ### Running
 (recommended) From outside the container:
 ```
+cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot
 scripts/run.sh /buildroot_output/images/start-qemu.sh
 ```
 From inside container:
