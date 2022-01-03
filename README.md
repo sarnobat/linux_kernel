@@ -22,7 +22,10 @@
 ### Compilation
 (recommended) From outside the container:
 ```
+
 cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot
+docker build -t "advancedclimatesystems/buildroot" .
+docker run -i --name buildroot_output advancedclimatesystems/buildroot /bin/echo "Data only."
 (optional) scripts/run.sh vi /buildroot_output/build/busybox-1.31.1/networking/wget.c +/download_one_url(const
 (optional) scripts/run.sh make busybox-rebuild # if you change wget.c
 scripts/run.sh make
