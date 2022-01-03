@@ -26,7 +26,9 @@
 cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot
 docker build -t "advancedclimatesystems/buildroot" .
 docker run -i --name buildroot_output advancedclimatesystems/buildroot /bin/echo "Data only."
+./scripts/run.sh make qemu_x86_64_defconfig menuconfig
 (optional) scripts/run.sh vi /buildroot_output/build/busybox-1.31.1/networking/wget.c +/download_one_url(const
+(optional) scripts/run.sh vi /buildroot_output/build/linux-5.4.58//init/main.c +/Run
 (optional) scripts/run.sh make busybox-rebuild # if you change wget.c
 scripts/run.sh make
 # looks like you don't need to destroy and rebuild the container for busybox. For init/main.c, I'm yet to determine how to deploy the changes.
