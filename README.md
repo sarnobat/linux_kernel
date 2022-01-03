@@ -23,7 +23,7 @@
 (recommended) From outside the container:
 ```
 cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot
-(optional) scripts/run.sh vi /buildroot_output/build/busybox-1.31.1/networking/wget.c
+(optional) scripts/run.sh vi /buildroot_output/build/busybox-1.31.1/networking/wget.c +/download_one_url(const
 (optional) scripts/run.sh make busybox-rebuild # if you change wget.c
 scripts/run.sh make
 # looks like you don't need to destroy and rebuild the container afterall
