@@ -42,6 +42,7 @@ sudo vi /etc/docker/daemon.json
 sudo chmod 777 /var/run/docker.sock
 sudo service docker start
 ```
+* The Docker container doesn't run the build on startup, it just installs the build tools. You have to kick off the build by running the Makefile
 
 2022: I'm having better luck with this
 https://github.com/AdvancedClimateSystems/docker-buildroot/blob/master/scripts/run.sh
