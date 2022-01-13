@@ -22,7 +22,6 @@
 ### Compilation
 (recommended) From outside the container:
 ```
-
 cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot
 docker build -t "advancedclimatesystems/buildroot" .
 docker run -i --name buildroot_output advancedclimatesystems/buildroot /bin/echo "Data only."
@@ -32,6 +31,16 @@ docker run -i --name buildroot_output advancedclimatesystems/buildroot /bin/echo
 (optional) scripts/run.sh make busybox-rebuild # if you change wget.c
 scripts/run.sh make
 # looks like you don't need to destroy and rebuild the container for busybox. For init/main.c, I'm yet to determine how to deploy the changes.
+```
+
+```
+sudo service docker stop
+sudo vi /etc/docker/daemon.json
+{
+   "data-root": "/media/sarnobat/ebay/trash/"
+}
+sudo chmod 777 /var/run/docker.sock
+sudo service docker start
 ```
 
 2022: I'm having better luck with this
