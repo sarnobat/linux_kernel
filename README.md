@@ -205,12 +205,16 @@ with Buildroot it was much easier.
 
 https://github.com/cirosantilli/linux-kernel-module-cheat
 
+* 2022-02: not working with ubuntu 20. I guess it was only tested on Ubuntu 18.
 * 2021-12-31: not working? Maybe I need to try on a version of Ubuntu that is still supported.
 * 2021: Not Working on ubuntu 16 (which recently reached end of life)
 * 2019: Worked on ubuntu 16 (when it was still supported)
 
 Kernel:
 
+    # https://github.com/cirosantilli/linux-kernel-module-cheat#qemu-buildroot-setup-getting-started
+    ./setup
+    # add deb-src repo: https://askubuntu.com/a/857433/126830
     unset PERL_MM_OPT && PATH=/bin/:/usr/local/bin:/usr/bin:/sbin ./build --download-dependencies qemu-buildroot | tee /tmp/buildrootcheat.log
     run 
     
