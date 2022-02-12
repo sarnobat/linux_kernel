@@ -149,6 +149,31 @@ Then:
 https://github.com/cirosantilli/linux-kernel-module-cheat#25-docker-host-setup
 * Note, install `docker.io`. `docker` doesn't work, even though it should.
 
+Ending log output:
+```
+mke2fs 1.45.6 (20-Mar-2020)
+Creating regular file /root/lkmc/out.docker/buildroot/build/default/x86_64/images/rootfs.ext2
+Creating filesystem with 262144 4k blocks and 65536 inodes
+Filesystem UUID: 2d241e73-1deb-481c-b97d-4d7ce97c92c6
+Superblock backups stored on blocks:
+	32768, 98304, 163840, 229376
+
+Allocating group tables: done
+Writing inode tables: done
+Copying files into the device: done
+Writing superblocks and filesystem accounting information: done
+
+>>>   Executing post-image script board/qemu/post-image.sh
++ /root/lkmc/out.docker/qemu/default/opt/qemu-img \
+  -T pr_manager_run,file=/dev/null \
+  convert \
+  -f raw \
+  -O qcow2 \
+  /root/lkmc/out.docker/buildroot/build/default/x86_64/images/rootfs.ext2 \
+  /root/lkmc/out.docker/buildroot/build/default/x86_64/images/rootfs.ext2.qcow2 \
+;
+time 02:25:03
+```
 ## Buildroot
 with Buildroot it was much easier. 
 * arm: https://stackoverflow.com/a/49349237/714112
