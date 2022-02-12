@@ -3,6 +3,7 @@
 -   [Docker buildroot](#docker-buildroot)
     -   [Compilation](#compilation)
     -   [Running](#running)
+-   [Docker buildroot-cheat](#docker-buildroot-cheat)
 -   [Buildroot](#buildroot)
 -   [Code comprehension](#code-comprehension)
     -   [runtime log](#runtime-log)
@@ -139,6 +140,14 @@ The modified busybox seems to come from this native file:
   132  docker images -a
   133  docker image inspect f0f1e5b912da
 ```
+
+## Docker Buildroot Cheat
+```
+cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/linux-kernel-module-cheat.2022-02
+```
+Then:
+https://github.com/cirosantilli/linux-kernel-module-cheat#25-docker-host-setup
+* Note, install `docker.io`. `docker` doesn't work, even though it should.
 
 ## Buildroot
 with Buildroot it was much easier. 
