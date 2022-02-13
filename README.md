@@ -148,7 +148,7 @@ cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/linux-kernel-module-cheat.
 Then:
 https://github.com/cirosantilli/linux-kernel-module-cheat#25-docker-host-setup 
 * Note, install `docker.io`. `docker` doesn't work, even though it should.
-* Do not confuse linux-kernel-module-cheat with linux-cheat. Ciro Santilli has a lot of great repositories and you need the kernel module one (I think)
+* Do not confuse linux-kernel-module-cheat with linux-cheat. Ciro Santilli has a lot of great repositories and you need the kernel module one (linux-cheat is just for installing linux, not recompiling the source, I believe)
 
 Ending log output:
 ```
