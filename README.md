@@ -146,8 +146,9 @@ The modified busybox seems to come from this native file:
 cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/linux-kernel-module-cheat.2022-02
 ```
 Then:
-https://github.com/cirosantilli/linux-kernel-module-cheat#25-docker-host-setup
+https://github.com/cirosantilli/linux-kernel-module-cheat#25-docker-host-setup 
 * Note, install `docker.io`. `docker` doesn't work, even though it should.
+* Do not confuse linux-kernel-module-cheat with linux-cheat. Ciro Santilli has a lot of great repositories and you need the kernel module one (I think)
 
 Ending log output:
 ```
