@@ -228,7 +228,7 @@ SRIDHAR: Run /sbin/init as init process
 
 piggy.S
 vmlinux.c
-Kernel boot parameters
+Kernel boot parameters: start_qemu.sh
 
 
 
