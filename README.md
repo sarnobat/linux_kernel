@@ -195,6 +195,10 @@ with Buildroot it was much easier.
 ## Code comprehension
 
 See also
+/Volumes/git/sarnobat.git/yEd/2020/technology/linux_boot.graphml
+/Volumes/git/sarnobat.git/yEd/2020/technology/linux_buildroot_cheat_build_deps.graphml
+/Volumes/git/sarnobat.git/yEd/2020/technology/linux_buildroot_docker.graphml
+* /Volumes/git/sarnobat.git/yEd/2020/technology/linux_call_graph.graphml
 * /Volumes/git/sarnobat.git/yEd/2020/technology/minix_call_graph.graphml
    * (mentions `head.S`)
 
