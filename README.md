@@ -194,6 +194,10 @@ with Buildroot it was much easier.
 
 ## Code comprehension
 
+See also
+* /Volumes/git/sarnobat.git/yEd/2020/technology/minix_call_graph.graphml
+   * (mentions `head.S`)
+
 ### boot
 
 Kernel launch (from busybox?):
