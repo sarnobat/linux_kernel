@@ -1,6 +1,6 @@
 ## Docker buildroot
 
--   [Docker buildroot](#docker-buildroot)
+-   [(recommended) Docker buildroot](#docker-buildroot)
     -   [Compilation](#compilation)
     -   [Running](#running)
 -   [Docker buildroot-cheat](#docker-buildroot-cheat)
@@ -23,14 +23,22 @@
 ### Compilation
 (recommended) From outside the container:
 ```
+### minimal
 cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot
 docker build -t "advancedclimatesystems/buildroot" .
 docker run -i --name buildroot_output advancedclimatesystems/buildroot /bin/echo "Data only."
 ./scripts/run.sh make qemu_x86_64_defconfig menuconfig
-(optional) scripts/run.sh vi /buildroot_output/build/busybox-1.31.1/networking/wget.c +/download_one_url(const
-(optional) scripts/run.sh vi /buildroot_output/build/linux-5.4.58//init/main.c +/Run
-(optional) scripts/run.sh make busybox-rebuild # if you change wget.c
 scripts/run.sh make
+scripts/run.sh /buildroot_output/images/start-qemu.sh
+
+### change some source code (kernel)
+(optional) scripts/run.sh vi /buildroot_output/build/linux-5.4.58//init/main.c +/Run
+(optional) scripts/run.sh make linux-rebuild
+
+### change some source code (userland)
+(optional) scripts/run.sh vi /buildroot_output/build/busybox-1.31.1/networking/wget.c +/download_one_url(const
+(optional) scripts/run.sh make busybox-rebuild # if you change wget.c
+
 # looks like you don't need to destroy and rebuild the container for busybox. For init/main.c, I'm yet to determine how to deploy the changes.
 ```
 
@@ -142,6 +150,7 @@ The modified busybox seems to come from this native file:
 ```
 
 ## Docker Buildroot Cheat
+Note: this won't allow you to change the source code, it just downloads a lot of precompiled binaries.
 ```
 cd /media/sarnobat/unmirrored/trash/buildroot-2021.12/linux-kernel-module-cheat.2022-02
 ```
