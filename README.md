@@ -204,6 +204,16 @@ Kernel launch (from busybox?):
 SRIDHAR Command line: rootwait root=/dev/vda console=tty1 console=ttyS0
 ```
 
+
+```
+./buildroot_output/build/linux-headers-5.4.58/init/main.c:	pr_notice("SRIDHAR: Kernel command line: %s\n", boot_command_line);
+```
+
+```
+SRIDHAR Kernel command line: rootwait root=/dev/vda console=tty1 console=ttyS0
+```
+
+
 init launch:
 ```
 ./buildroot_output/build/linux-5.4.58/init/main.c:1048:	pr_info("SRIDHAR: Run %s as init process\n", init_filename);
