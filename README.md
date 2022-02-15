@@ -226,6 +226,22 @@ init launch:
 SRIDHAR: Run /sbin/init as init process
 ```
 
+piggy.S
+vmlinux.c
+Kernel boot parameters
+
+
+
+./buildroot_output/build/linux-5.4.58/arch/x86/kernel/head64.c:	start_kernel();
+SRIDHAR start_kernel() 9
+
+./buildroot_output/build/linux-5.4.58/arch/x86/kernel/smpboot.c:	pr_info("Allowing %d CPUs, %d hotplug CPUs\n",
+./buildroot_output/build/linux-5.4.58/arch/x86/kernel/apic/apic.c:		pr_info("APIC: Switch to symmetric I/O mode setup\n");
+
+
+Thanks to these sources for helping me find some of this code:
+* https://tldp.org/HOWTO/Linux-i386-Boot-Code-HOWTO/init_main.html
+* https://www.oreilly.com/library/view/linux-device-drivers/0596000081/ch16s03.html
 
 ### runtime log
 
