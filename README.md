@@ -237,6 +237,7 @@ SRIDHAR: Run /sbin/init as init process
 antec Mon 14 February 2022 10:17PM> scripts/run.sh /buildroot_output/images/start-qemu.sh
 docker run --rm -ti --volumes-from buildroot_output -v /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot/data:/root/buildroot/data -v /medt
 VNC server running on 127.0.0.1:5900
+SRIDHAR start_kernel() 9
 Linux version 5.4.58 (root@a0caf40a63ed) (gcc version 9.3.0 (Buildroot 2020.08)) #3 SMP Tue Feb 15 06:17:02 UTC 2022
 SRIDHAR Command line: rootwait root=/dev/vda console=tty1 console=ttyS0
 x86/fpu: x87 FPU will use FXSAVE
