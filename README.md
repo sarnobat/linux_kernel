@@ -234,12 +234,12 @@ SRIDHAR: Run /sbin/init as init process
 
 ### runtime log - boot
 ```
-antec Mon 14 February 2022 10:17PM> scripts/run.sh /buildroot_output/images/start-qemu.sh
+antec Mon 14 February 2022 11:08PM> scripts/run.sh /buildroot_output/images/start-qemu.sh
 docker run --rm -ti --volumes-from buildroot_output -v /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot/data:/root/buildroot/data -v /medt
 VNC server running on 127.0.0.1:5900
 SRIDHAR start_kernel() 9
-Linux version 5.4.58 (root@a0caf40a63ed) (gcc version 9.3.0 (Buildroot 2020.08)) #3 SMP Tue Feb 15 06:17:02 UTC 2022
-SRIDHAR Command line: rootwait root=/dev/vda console=tty1 console=ttyS0
+Linux version 5.4.58 (root@8544e6e8f1a1) (gcc version 9.3.0 (Buildroot 2020.08)) #6 SMP Tue Feb 15 07:07:54 UTC 2022
+SRIDHAR Command line: rootwait root=/dev/vda console=tty1 console=ttyS0 loglevel=7 systemd.log_level=debug
 x86/fpu: x87 FPU will use FXSAVE
 BIOS-provided physical RAM map:
 BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
@@ -289,7 +289,7 @@ clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_
 setup_percpu: NR_CPUS:64 nr_cpumask_bits:64 nr_cpu_ids:1 nr_node_ids:1
 percpu: Embedded 41 pages/cpu s127256 r8192 d32488 u2097152
 Built 1 zonelists, mobility grouping on.  Total pages: 32102
-Kernel command line: rootwait root=/dev/vda console=tty1 console=ttyS0
+SRIDHAR Kernel command line: rootwait root=/dev/vda console=tty1 console=ttyS0 loglevel=7 systemd.log_level=debug
 Dentry cache hash table entries: 16384 (order: 5, 131072 bytes, linear)
 Inode-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
 mem auto-init: stack:off, heap alloc:off, heap free:off
@@ -309,9 +309,9 @@ APIC: Switch to symmetric I/O mode setup
 ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
 tsc: Unable to calibrate against PIT
 tsc: using HPET reference calibration
-tsc: Detected 2806.218 MHz processor
-clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x287332bb1d3, max_idle_ns: 440795270787 ns
-Calibrating delay loop (skipped), value calculated using timer frequency.. 5612.43 BogoMIPS (lpj=11224872)
+tsc: Detected 2806.142 MHz processor
+clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x2872ead4577, max_idle_ns: 440795243919 ns
+Calibrating delay loop (skipped), value calculated using timer frequency.. 5612.28 BogoMIPS (lpj=11224568)
 pid_max: default: 32768 minimum: 301
 Mount-cache hash table entries: 512 (order: 0, 4096 bytes, linear)
 Mountpoint-cache hash table entries: 512 (order: 0, 4096 bytes, linear)
@@ -322,13 +322,15 @@ Spectre V2 : Mitigation: Full AMD retpoline
 Spectre V2 : Spectre v2 / SpectreRSB mitigation: Filling RSB on context switch
 Speculative Store Bypass: Vulnerable
 Freeing SMP alternatives memory: 24K
+SRIDHAR kernel_init() 1
+kernel_init_freeable() 1
 smpboot: CPU0: AMD QEMU Virtual CPU version 2.5+ (family: 0x6, model: 0x6, stepping: 0x3)
 Performance Events: PMU not available due to virtualization, using software events only.
 rcu: Hierarchical SRCU implementation.
 smp: Bringing up secondary CPUs ...
 smp: Brought up 1 node, 1 CPU
 smpboot: Max logical packages: 1
-smpboot: Total of 1 processors activated (5612.43 BogoMIPS)
+smpboot: Total of 1 processors activated (5612.28 BogoMIPS)
 devtmpfs: initialized
 random: get_random_u32 called from bucket_table_alloc.isra.0+0x75/0x160 with crng_init=0
 clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
@@ -449,9 +451,6 @@ fbcon: bochs-drmdrmfb (fb0) is primary device
 Console: switching to colour frame buffer device 128x48
 bochs-drm 0000:00:02.0: fb0: bochs-drmdrmfb frame buffer device
 virtio_blk virtio1: [vda] 122880 512-byte logical blocks (62.9 MB/60.0 MiB)
-tsc: Refined TSC clocksource calibration: 2806.276 MHz
-clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x2873697561d, max_idle_ns: 440795340944 ns
-clocksource: Switched to clocksource tsc
 scsi host0: ata_piix
 scsi host1: ata_piix
 ata1: PATA max MWDMA2 cmd 0x1f0 ctl 0x3f6 bmdma 0xc0a0 irq 14
@@ -463,6 +462,9 @@ usbcore: registered new interface driver usb-storage
 i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
 serio: i8042 KBD port at 0x60,0x64 irq 1
 serio: i8042 AUX port at 0x60,0x64 irq 12
+tsc: Refined TSC clocksource calibration: 2806.292 MHz
+clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x287378a38b6, max_idle_ns: 440795214067 ns
+clocksource: Switched to clocksource tsc
 usbcore: registered new interface driver usbhid
 usbhid: USB HID core driver
 input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
@@ -471,7 +473,7 @@ Segment Routing with IPv6
 sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
 NET: Registered protocol family 17
 IPI shorthand broadcast: enabled
-sched_clock: Marking stable (2041657008, -45775188)->(1999123499, -3241679)
+sched_clock: Marking stable (1970765072, -45996236)->(1928296388, -3527552)
 ALSA device list:
   No soundcards found.
 ata2.00: ATAPI: QEMU DVD-ROM, 2.5+, max UDMA/100
@@ -481,10 +483,14 @@ EXT4-fs (vda): mounting ext2 file system using the ext4 subsystem
 EXT4-fs (vda): mounted filesystem without journal. Opts: (null)
 VFS: Mounted root (ext2 filesystem) readonly on device 254:0.
 devtmpfs: mounted
+SRIDHAR kernel_init_freeable() 9
 Freeing unused kernel image memory: 876K
 Write protecting the kernel read-only data: 12288k
 Freeing unused kernel image memory: 2016K
 Freeing unused kernel image memory: 408K
+SRIDHAR kernel_init() 5
+SRIDHAR kernel_init() 7
+SRIDHAR kernel_init() 8
 SRIDHAR: Run /sbin/init as init process
 random: fast init done
 EXT4-fs (vda): warning: mounting unchecked fs, running e2fsck is recommended
