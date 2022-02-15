@@ -194,6 +194,24 @@ with Buildroot it was much easier.
 
 ## Code comprehension
 
+### boot
+
+Kernel launch (from busybox?):
+```
+./buildroot_output/build/linux-5.4.58/arch/x86/kernel/setup.c:885:	printk(KERN_INFO "SRIDHAR Command line: %s\n", boot_command_line);
+```
+```
+SRIDHAR Command line: rootwait root=/dev/vda console=tty1 console=ttyS0
+```
+
+init launch:
+```
+./buildroot_output/build/linux-5.4.58/init/main.c:1048:	pr_info("SRIDHAR: Run %s as init process\n", init_filename);
+```
+SRIDHAR: Run /sbin/init as init process
+```
+
+
 ### runtime log
 
 * `/Users/sarnobat/mwk.git/snippets/basic_clusters_still_need_human_sorting/code/snpt_1633771455105_0__linux_code_comprehension_1.mwk`
