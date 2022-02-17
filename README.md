@@ -39,7 +39,19 @@ scripts/run.sh /buildroot_output/images/start-qemu.sh
 (optional) scripts/run.sh vi /buildroot_output/build/busybox-1.31.1/networking/wget.c +/download_one_url(const
 (optional) scripts/run.sh make busybox-rebuild # if you change wget.c
 
-# looks like you don't need to destroy and rebuild the container for busybox. For init/main.c, I'm yet to determine how to deploy the changes.
+Troubleshooting
+It's fiddly trying to get userland changes to be copied into the new installation. Here are some suggestions:
+1) Make sure you are running the right container (it is easier to not use `scripts/run.sh` to make sure multiple docker images aren't created)
+2) 
+```
+# from inside the CORRECT container
+cd /buildroot_output
+make busybox-rebuild all
+```
+(instead of just make busybox-rebuild)
+(credits: http://underpop.online.fr/b/buildroot/en/_using_buildroot_during_development.htm.gz)
+
+# looks like you don't need to destroy and rebuild the container for busybox. -For init/main.c, I'm yet to determine how to deploy the changes.-
 ```
 
 ```
