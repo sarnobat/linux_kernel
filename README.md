@@ -270,8 +270,9 @@ antec Mon 14 February 2022 11:08PM> scripts/run.sh /buildroot_output/images/star
 docker run --rm -ti --volumes-from buildroot_output -v /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot/data:/root/buildroot/data -v /medt
 VNC server running on 127.0.0.1:5900
 SRIDHAR start_kernel() 9
-Linux version 5.4.58 (root@8544e6e8f1a1) (gcc version 9.3.0 (Buildroot 2020.08)) #6 SMP Tue Feb 15 07:07:54 UTC 2022
-SRIDHAR Command line: rootwait root=/dev/vda console=tty1 console=ttyS0 loglevel=7 systemd.log_level=debug
+SRIDHAR init/main.c start_kernel()
+SRIDHAR init/main.c Linux version 5.4.58 (root@5465dd08bf9e) (gcc version 9.3.0 (Buildroot 2020.08)) #20 SMP Thu Feb 17 06:51:32 UTC 2022
+SRIDHAR setup_arch() 1 Command line: rootwait root=/dev/vda console=tty1 console=ttyS0
 x86/fpu: x87 FPU will use FXSAVE
 BIOS-provided physical RAM map:
 BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
@@ -318,10 +319,11 @@ smpboot: Allowing 1 CPUs, 0 hotplug CPUs
 [mem 0x08000000-0xfffbffff] available for PCI devices
 Booting paravirtualized kernel on bare hardware
 clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568 ns
+SRIDHAR kernel/setup.c setup_arch() 9
 setup_percpu: NR_CPUS:64 nr_cpumask_bits:64 nr_cpu_ids:1 nr_node_ids:1
 percpu: Embedded 41 pages/cpu s127256 r8192 d32488 u2097152
 Built 1 zonelists, mobility grouping on.  Total pages: 32102
-SRIDHAR Kernel command line: rootwait root=/dev/vda console=tty1 console=ttyS0 loglevel=7 systemd.log_level=debug
+SRIDHAR init/main.c start_kernel() Kernel command line: rootwait root=/dev/vda console=tty1 console=ttyS0
 Dentry cache hash table entries: 16384 (order: 5, 131072 bytes, linear)
 Inode-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
 mem auto-init: stack:off, heap alloc:off, heap free:off
@@ -341,12 +343,17 @@ APIC: Switch to symmetric I/O mode setup
 ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
 tsc: Unable to calibrate against PIT
 tsc: using HPET reference calibration
-tsc: Detected 2806.142 MHz processor
-clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x2872ead4577, max_idle_ns: 440795243919 ns
-Calibrating delay loop (skipped), value calculated using timer frequency.. 5612.28 BogoMIPS (lpj=11224568)
+tsc: Detected 2801.037 MHz processor
+clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x2860145f0a0, max_idle_ns: 440795343665 ns
+Calibrating delay loop (skipped), value calculated using timer frequency.. 5602.07 BogoMIPS (lpj=11204148)
 pid_max: default: 32768 minimum: 301
+SRIDHAR init/main.c fork_init()
 Mount-cache hash table entries: 512 (order: 0, 4096 bytes, linear)
 Mountpoint-cache hash table entries: 512 (order: 0, 4096 bytes, linear)
+SRIDHAR init/main.c 7
+SRIDHAR init/main.c 7.5
+SRIDHAR init/main.c 8
+SRIDHAR init/main.c 8.1
 Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
 Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
 Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
@@ -354,6 +361,11 @@ Spectre V2 : Mitigation: Full AMD retpoline
 Spectre V2 : Spectre v2 / SpectreRSB mitigation: Filling RSB on context switch
 Speculative Store Bypass: Vulnerable
 Freeing SMP alternatives memory: 24K
+SRIDHAR init/main.c 8.2
+SRIDHAR init/main.c 8.3
+SRIDHAR init/main.c 8.4
+SRIDHAR init/main.c 8.5
+SRIDHAR init/main.c rest_init() 0 - starting scheduler
 SRIDHAR kernel_init() 1
 kernel_init_freeable() 1
 smpboot: CPU0: AMD QEMU Virtual CPU version 2.5+ (family: 0x6, model: 0x6, stepping: 0x3)
@@ -362,15 +374,20 @@ rcu: Hierarchical SRCU implementation.
 smp: Bringing up secondary CPUs ...
 smp: Brought up 1 node, 1 CPU
 smpboot: Max logical packages: 1
-smpboot: Total of 1 processors activated (5612.28 BogoMIPS)
+smpboot: Total of 1 processors activated (5602.07 BogoMIPS)
 devtmpfs: initialized
+SRIDHAR init/main.c do_initcall_level() run level = 0 :: rootwait root=/dev/vda console=tty1 console=ttyS0
 random: get_random_u32 called from bucket_table_alloc.isra.0+0x75/0x160 with crng_init=0
+SRIDHAR init/main.c do_initcall_level() run level = 1 :: rootwait root=/dev/vda console=tty1 console=ttyS0
 clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
 futex hash table entries: 256 (order: 2, 16384 bytes, linear)
 NET: Registered protocol family 16
+SRIDHAR init/main.c do_initcall_level() run level = 2 :: rootwait root=/dev/vda console=tty1 console=ttyS0
 cpuidle: using governor ladder
+SRIDHAR init/main.c do_initcall_level() run level = 3 :: rootwait root=/dev/vda console=tty1 console=ttyS0
 ACPI: bus type PCI registered
 PCI: Using configuration type 1 for base access
+SRIDHAR init/main.c do_initcall_level() run level = 4 :: rootwait root=/dev/vda console=tty1 console=ttyS0
 ACPI: Added _OSI(Module Device)
 ACPI: Added _OSI(Processor Device)
 ACPI: Added _OSI(3.0 _SCP Extensions)
@@ -434,6 +451,7 @@ usbcore: registered new interface driver hub
 usbcore: registered new device driver usb
 Advanced Linux Sound Architecture Driver Initialized.
 PCI: Using ACPI for IRQ routing
+SRIDHAR init/main.c do_initcall_level() run level = 5 :: rootwait root=/dev/vda console=tty1 console=ttyS0
 clocksource: Switched to clocksource tsc-early
 pnp: PnP ACPI init
 pnp: PnP ACPI: found 6 devices
@@ -458,6 +476,7 @@ pci 0000:00:00.0: Limiting direct PCI/PCI transfers
 pci 0000:00:01.0: Activating ISA DMA hang workarounds
 pci 0000:00:02.0: Video device with shadowed ROM at [mem 0x000c0000-0x000dffff]
 PCI: CLS 0 bytes, default 64
+SRIDHAR init/main.c do_initcall_level() run level = 6 :: rootwait root=/dev/vda console=tty1 console=ttyS0
 workingset: timestamp_bits=62 max_order=15 bucket_order=0
 Block layer SCSI generic (bsg) driver version 0.4 loaded (major 254)
 io scheduler mq-deadline registered
@@ -494,8 +513,8 @@ usbcore: registered new interface driver usb-storage
 i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
 serio: i8042 KBD port at 0x60,0x64 irq 1
 serio: i8042 AUX port at 0x60,0x64 irq 12
-tsc: Refined TSC clocksource calibration: 2806.292 MHz
-clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x287378a38b6, max_idle_ns: 440795214067 ns
+tsc: Refined TSC clocksource calibration: 2806.295 MHz
+clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x28737b6f6bd, max_idle_ns: 440795264818 ns
 clocksource: Switched to clocksource tsc
 usbcore: registered new interface driver usbhid
 usbhid: USB HID core driver
@@ -504,8 +523,9 @@ NET: Registered protocol family 10
 Segment Routing with IPv6
 sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
 NET: Registered protocol family 17
+SRIDHAR init/main.c do_initcall_level() run level = 7 :: rootwait root=/dev/vda console=tty1 console=ttyS0
 IPI shorthand broadcast: enabled
-sched_clock: Marking stable (1970765072, -45996236)->(1928296388, -3527552)
+sched_clock: Marking stable (1977305344, -46258675)->(1947468641, -16421972)
 ALSA device list:
   No soundcards found.
 ata2.00: ATAPI: QEMU DVD-ROM, 2.5+, max UDMA/100
@@ -525,13 +545,29 @@ SRIDHAR kernel_init() 7
 SRIDHAR kernel_init() 8
 SRIDHAR: Run /sbin/init as init process
 random: fast init done
-EXT4-fs (vda): warning: mounting unchecked fs, running e2fsck is recommended
+SRIDHAR busybox/init/init.c init_main()
+SRIDHAR busybox/init/init.c new_init_action() - /bin/mount -t proc proc /proc
+SRIDHAR busybox/init/init.c new_init_action() - /bin/mount -o remount,rw /
+SRIDHAR busybox/init/init.c new_init_action() - /bin/mkdir -p /dev/pts /dev/shm
+SRIDHAR busybox/init/init.c new_init_action() - /bin/mount -a
+SRIDHAR busybox/init/init.c new_init_action() - /sbin/swapon -a
+SRIDHAR busybox/init/init.c new_init_action() - /bin/ln -sf /proc/self/fd /dev/fd
+SRIDHAR busybox/init/init.c new_init_action() - /bin/ln -sf /proc/self/fd/0 /dev/stdin
+SRIDHAR busybox/init/init.c new_init_action() - /bin/ln -sf /proc/self/fd/1 /dev/stdout
+SRIDHAR busybox/init/init.c new_init_action() - /bin/ln -sf /proc/self/fd/2 /dev/stderr
+SRIDHAR busybox/init/init.c new_init_action() - /bin/hostname -F /etc/hostname
+SRIDHAR busybox/init/init.c new_init_action() - /etc/init.d/rcS
+SRIDHAR busybox/init/init.c new_init_action() - /sbin/getty -L  console 0 vt100
+SRIDHAR busybox/init/init.c new_init_action() - /sbin/getty -L  tty1 0 vt100
+SRIDHAR busybox/init/init.c new_init_action() - /etc/init.d/rcK
+SRIDHAR busybox/init/init.c new_init_action() - /sbin/swapoff -a
+SRIDHAR busybox/init/init.c new_init_action() - /bin/umount -a -r
+SRIDHAR busybox/init/init.c init_main() running SYSINIT
 EXT4-fs (vda): re-mounted. Opts: (null)
 ext2 filesystem being remounted at / supports timestamps until 2038 (0x7fffffff)
 Starting syslogd: OK
 Starting klogd: OK
 Running sysctl: OK
-Initializing random number generator: OK
 Saving random seed: random: dd: uninitialized urandom read (512 bytes read)
 OK
 Starting network: udhcpc: started, v1.31.1
