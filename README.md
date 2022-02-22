@@ -629,6 +629,52 @@ buildroot login:
 /media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/socket.c:2705:printk("SRIDHAR socket.c::SYSCALL_DEFINE2()\n");
 /media/sarnobat/cadet/trash/buildroot/buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat/shell_helpers.py:368:            print('  SRIDHAR cmd = ' + ' '.join(cmd))
 ```
+
+### init process
+At run level 1, the following are running:
+
+```
+systemd─┬─3*[dbus-daemon]
+        ├─sshd───sshd───zsh───pstree
+        ├─systemd─┬─(sd-pam)
+        │         ├─dbus-daemon
+        │         ├─gvfs-udisks2-vo───2*[{gvfs-udisks2-vo}]
+        │         ├─gvfsd───3*[{gvfsd}]
+        │         ├─gvfsd-fuse───5*[{gvfsd-fuse}]
+        │         ├─pulseaudio───3*[{pulseaudio}]
+        │         └─tracker-miner-f───3*[{tracker-miner-f}]
+        ├─systemd-journal
+        ├─systemd-sulogin───sulogin
+        ├─systemd-timesyn───{systemd-timesyn}
+        └─systemd-udevd
+```
+
+```
+fileserver2017 Mon 21 February 2022  8:19PM> ls --color -lrhsSA /etc/rc1.d/
+total 0
+0 lrwxrwxrwx 1 root root 13 Jan  9 19:31 K01ufw -> ../init.d/ufw
+0 lrwxrwxrwx 1 root root 14 Jan  9 19:31 K01gdm3 -> ../init.d/gdm3
+0 lrwxrwxrwx 1 root root 14 Jan  9 19:31 K01cups -> ../init.d/cups
+0 lrwxrwxrwx 1 root root 15 Jan  9 19:31 K01uuidd -> ../init.d/uuidd
+0 lrwxrwxrwx 1 root root 15 Jan  9 19:31 K01saned -> ../init.d/saned
+0 lrwxrwxrwx 1 root root 17 Jan  9 19:31 K01rsyslog -> ../init.d/rsyslog
+0 lrwxrwxrwx 1 root root 17 Jan  9 20:34 K01rpcbind -> ../init.d/rpcbind
+0 lrwxrwxrwx 1 root root 17 Jan  9 19:31 K01openvpn -> ../init.d/openvpn
+0 lrwxrwxrwx 1 root root 18 Jan  9 19:31 K01whoopsie -> ../init.d/whoopsie
+0 lrwxrwxrwx 1 root root 19 Jan  9 19:31 K01bluetooth -> ../init.d/bluetooth
+0 lrwxrwxrwx 1 root root 20 Jan  9 21:13 K01ubuntu-fan -> ../init.d/ubuntu-fan
+0 lrwxrwxrwx 1 root root 20 Jan  9 20:34 K01nfs-common -> ../init.d/nfs-common
+0 lrwxrwxrwx 1 root root 20 Jan  9 19:31 K01kerneloops -> ../init.d/kerneloops
+0 lrwxrwxrwx 1 root root 20 Jan  9 19:31 K01irqbalance -> ../init.d/irqbalance
+0 lrwxrwxrwx 1 root root 20 Jan  9 19:31 K01alsa-utils -> ../init.d/alsa-utils
+0 lrwxrwxrwx 1 root root 22 Jan  9 19:31 K01cups-browsed -> ../init.d/cups-browsed
+0 lrwxrwxrwx 1 root root 22 Jan  9 19:31 K01avahi-daemon -> ../init.d/avahi-daemon
+0 lrwxrwxrwx 1 root root 23 Jan  9 19:31 K01spice-vdagent -> ../init.d/spice-vdagent
+0 lrwxrwxrwx 1 root root 23 Jan  9 19:31 K01lvm2-lvmpolld -> ../init.d/lvm2-lvmpolld
+0 lrwxrwxrwx 1 root root 27 Jan  9 19:31 K01speech-dispatcher -> ../init.d/speech-dispatcher
+0 lrwxrwxrwx 1 root root 27 Jan  9 20:34 K01nfs-kernel-server -> ../init.d/nfs-kernel-server
+0 lrwxrwxrwx 1 root root 37 Jan  9 19:31 K01pulseaudio-enable-autospawn -> ../init.d/pulseaudio-enable-autospawn
+```
 # Old (not working)
 ## Buildroot cheat
 
