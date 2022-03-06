@@ -22,10 +22,9 @@
 
 ```mermaid
 flowchart TB
-A[run.sh] -->|Text| B(Round)
-B --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
+
+EFI --> busybox --> grub.cfg --> vmlinuz --> init --> main.c --> setup.c
+qemu --> bzimage --> vmlinuz --> head.S
 ```
 
 ### Compilation
