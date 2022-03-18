@@ -23,11 +23,8 @@
 ```mermaid
 flowchart TB
 
-a[fs nodes]
-b[path format]
-c[indented line format - a bit like yaml]
-
-a --> b --> c
+EFI --> busybox --> grub.cfg --> vmlinuz --> init --> main.c --> setup.c
+qemu --> bzimage --> vmlinuz --> head.S
 ```
 
 ### Compilation
