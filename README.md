@@ -222,6 +222,7 @@ See also
    * (mentions `head.S`)
 
 https://www.tamacom.com/tour/kernel/linux/S/39904.html#L474
+https://unix.stackexchange.com/questions/139297/what-are-the-two-head-s-files-in-linux-source
 
 ### boot
 
