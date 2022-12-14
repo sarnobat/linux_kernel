@@ -221,6 +221,8 @@ See also
 * /Volumes/git/sarnobat.git/yEd/2020/technology/minix_call_graph.graphml
    * (mentions `head.S`)
 
+https://www.tamacom.com/tour/kernel/linux/S/39904.html#L474
+
 ### boot
 
 Kernel launch (from busybox?):
