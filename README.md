@@ -252,11 +252,12 @@ init launch:
 SRIDHAR: Run /sbin/init as init process
 ```
 
-piggy.S
-vmlinux.c
+* piggy.S
+* vmlinux.c
+
 Kernel boot parameters: start_qemu.sh
 
-
+Unfortunately you can't put a prink statement in head64.c. It will change the size of it, corrupting the instructions in the boot sector.
 ```
 ./buildroot_output/build/linux-5.4.58/arch/x86/kernel/head64.c:	start_kernel();
 ```
