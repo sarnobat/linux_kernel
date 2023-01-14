@@ -27,6 +27,17 @@ EFI --> busybox --> grub.cfg --> vmlinuz --> init --> main.c --> setup.c
 qemu --> bzimage --> vmlinuz --> head.S
 ```
 
+```
+             +- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +     + - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
+             ' bootloader                                                                 '     ' kernel                                                                        '
+             '                                                                            '     '                                                                               '
++------+     ' +-----------------------------------+     +------------------------------+ '     ' +-----------------------------+     +---------------------------------------+ '
+| BIOS | --> ' | arch/x86/boot/header.S::call main | --> | arch/x86/boot/main.c::main() | ' --> ' | init/main.c::start_kernel() | --> | arch/x86/kernel/setup.c::setup_arch() | '
++------+     ' +-----------------------------------+     +------------------------------+ '     ' +-----------------------------+     +---------------------------------------+ '
+             '                                                                            '     '                                                                               '
+             +- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +     + - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
+```
+
 ### Dependency tree
 
 ```
@@ -44,7 +55,6 @@ qemu --> bzimage --> vmlinuz --> head.S
   BUILD   arch/x86/boot/bzImage
 ```
 <img src="bzImage.png" height="280"> <img src="vmlinux-bzimage.png" height="280">
-
 
 ### Compilation
 (recommended) From outside the container:
