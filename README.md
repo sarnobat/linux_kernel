@@ -30,6 +30,9 @@ qemu --> bzimage --> vmlinuz --> head.S
 ### Dependency tree
 
 ```
+  CC      arch/x86/kernel/head64.o
+  CC      init/version.o
+  CC      arch/x86/boot/version.o
   OBJCOPY arch/x86/boot/compressed/vmlinux.bin
   CC      arch/x86/boot/compressed/kaslr.o
   CC      arch/x86/boot/compressed/misc.o
