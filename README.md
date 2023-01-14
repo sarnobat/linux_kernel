@@ -276,7 +276,7 @@ SRIDHAR: Run /sbin/init as init process
 
 Kernel boot parameters: start_qemu.sh
 
-Unfortunately you can't put a prink statement in head64.c. It will change the size of it, corrupting the instructions in the boot sector.
+Unfortunately you can't put a prink statement in head64.c. It will change the size of it, corrupting the instructions in the boot sector. (but you can read about it in the "jump to main" section here: https://0xax.gitbooks.io/linux-insides/content/Booting/linux-bootstrap-1.html )
 ```
 ./buildroot_output/build/linux-5.4.58/arch/x86/kernel/head64.c:	start_kernel();
 ```
