@@ -19,7 +19,7 @@
     -   [Running](#running-1)
     -   [Kernel repository history](#kernel-repository-history)
 
-
+### Call Graph
 ```mermaid
 flowchart TB
 
@@ -27,8 +27,21 @@ EFI --> busybox --> grub.cfg --> vmlinuz --> init --> main.c --> setup.c
 qemu --> bzimage --> vmlinuz --> head.S
 ```
 
+### Dependency tree
 
+```
+  OBJCOPY arch/x86/boot/compressed/vmlinux.bin
+  CC      arch/x86/boot/compressed/kaslr.o
+  CC      arch/x86/boot/compressed/misc.o
+  MKPIGGY arch/x86/boot/compressed/piggy.S
+  AS      arch/x86/boot/compressed/piggy.o
+  OBJCOPY arch/x86/boot/vmlinux.bin
+  AS      arch/x86/boot/header.o
+  OBJCOPY arch/x86/boot/setup.bin
+  BUILD   arch/x86/boot/bzImage
+```
 <img src="bzImage.png" height="280">
+
 
 ### Compilation
 (recommended) From outside the container:
