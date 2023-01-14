@@ -27,6 +27,9 @@ EFI --> busybox --> grub.cfg --> vmlinuz --> init --> main.c --> setup.c
 qemu --> bzimage --> vmlinuz --> head.S
 ```
 
+
+<img src="bzImage.png" height="280">
+
 ### Compilation
 (recommended) From outside the container:
 ```
