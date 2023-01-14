@@ -291,6 +291,7 @@ SRIDHAR start_kernel() 9
 ```
 
 Thanks to these sources for helping me find some of this code:
+* https://0xax.gitbooks.io/linux-insides/content/Booting/linux-bootstrap-1.html
 * https://tldp.org/HOWTO/Linux-i386-Boot-Code-HOWTO/init_main.html
 * https://www.oreilly.com/library/view/linux-device-drivers/0596000081/ch16s03.html
 
