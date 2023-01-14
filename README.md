@@ -43,7 +43,7 @@ qemu --> bzimage --> vmlinuz --> head.S
   OBJCOPY arch/x86/boot/setup.bin
   BUILD   arch/x86/boot/bzImage
 ```
-<img src="bzImage.png" height="280">
+<img src="bzImage.png" height="280"> <img src="vmlinux-bzimage.png" height="280">
 
 
 ### Compilation
