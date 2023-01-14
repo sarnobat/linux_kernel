@@ -257,14 +257,18 @@ vmlinux.c
 Kernel boot parameters: start_qemu.sh
 
 
-
+```
 ./buildroot_output/build/linux-5.4.58/arch/x86/kernel/head64.c:	start_kernel();
+```
+
 ```
 SRIDHAR start_kernel() 9
 ```
+
+```
 ./buildroot_output/build/linux-5.4.58/arch/x86/kernel/smpboot.c:	pr_info("Allowing %d CPUs, %d hotplug CPUs\n",
 ./buildroot_output/build/linux-5.4.58/arch/x86/kernel/apic/apic.c:		pr_info("APIC: Switch to symmetric I/O mode setup\n");
-
+```
 
 Thanks to these sources for helping me find some of this code:
 * https://tldp.org/HOWTO/Linux-i386-Boot-Code-HOWTO/init_main.html
