@@ -287,7 +287,7 @@ VNC server running on 127.0.0.1:5900
 SRIDHAR start_kernel() 9
 SRIDHAR init/main.c start_kernel()
 SRIDHAR init/main.c Linux version 5.4.58 (root@5465dd08bf9e) (gcc version 9.3.0 (Buildroot 2020.08)) #20 SMP Thu Feb 17 06:51:32 UTC 2022
-SRIDHAR setup_arch() 1 Command line: rootwait root=/dev/vda console=tty1 console=ttyS0
+SRIDHAR arch/x86/kernel/setup.c::setup_arch() 1 Command line: rootwait root=/dev/vda console=tty1 console=ttyS0
 x86/fpu: x87 FPU will use FXSAVE
 BIOS-provided physical RAM map:
 BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
