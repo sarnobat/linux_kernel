@@ -285,7 +285,7 @@ antec Mon 14 February 2022 11:08PM> scripts/run.sh /buildroot_output/images/star
 docker run --rm -ti --volumes-from buildroot_output -v /media/sarnobat/unmirrored/trash/buildroot-2021.12/docker-buildroot/data:/root/buildroot/data -v /medt
 VNC server running on 127.0.0.1:5900
 SRIDHAR start_kernel() 9
-SRIDHAR init/main.c start_kernel()
+SRIDHAR init/main.c::start_kernel()
 SRIDHAR init/main.c Linux version 5.4.58 (root@5465dd08bf9e) (gcc version 9.3.0 (Buildroot 2020.08)) #20 SMP Thu Feb 17 06:51:32 UTC 2022
 SRIDHAR arch/x86/kernel/setup.c::setup_arch() 1 Command line: rootwait root=/dev/vda console=tty1 console=ttyS0
 x86/fpu: x87 FPU will use FXSAVE
@@ -334,7 +334,7 @@ smpboot: Allowing 1 CPUs, 0 hotplug CPUs
 [mem 0x08000000-0xfffbffff] available for PCI devices
 Booting paravirtualized kernel on bare hardware
 clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568 ns
-SRIDHAR kernel/setup.c setup_arch() 9
+SRIDHAR kernel/setup.c::setup_arch() 9
 setup_percpu: NR_CPUS:64 nr_cpumask_bits:64 nr_cpu_ids:1 nr_node_ids:1
 percpu: Embedded 41 pages/cpu s127256 r8192 d32488 u2097152
 Built 1 zonelists, mobility grouping on.  Total pages: 32102
