@@ -19,6 +19,18 @@
     -   [Running](#running-1)
     -   [Kernel repository history](#kernel-repository-history)
 
+## 2024
+
+### Buildroot
+Generated artifacts:
+```
+antec Tue 06 August 2024  9:46AM> docker exec -it 39730a7dffd5 find /root/buildroot/output/images/ -ls
+   164132      4 drwxr-xr-x   2 root     root         4096 Aug  6 04:47 /root/buildroot/output/images/
+   216214   4184 -rw-r--r--   1 root     root      4284368 Aug  6 04:47 /root/buildroot/output/images/bzImage
+   216665   1932 -rw-r--r--   1 root     root     62914560 Aug  6 04:47 /root/buildroot/output/images/rootfs.ext2
+```
+
+## 2023
 ### Call Graph
 ```mermaid
 flowchart TB
