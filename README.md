@@ -21,6 +21,11 @@
 
 ## 2024
 
+### Docker
+2024-08
+
+See `linux_kernel_schumatize.pdf`
+
 ### Buildroot
 Generated artifacts:
 ```
