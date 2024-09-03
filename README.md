@@ -21,12 +21,11 @@
 
 ## 2024
 
-### Docker
+### Docker Buildroot
 2024-08
 
 See `linux_kernel_schumatize.pdf`
 
-### Buildroot
 Generated artifacts:
 ```
 antec Tue 06 August 2024  9:46AM> docker exec -it 39730a7dffd5 find /root/buildroot/output/images/ -ls
