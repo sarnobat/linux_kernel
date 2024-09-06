@@ -788,7 +788,7 @@ drwxrwxr-x 17 sarnobat sarnobat    4096 Nov  6  2019 buildroot-x86.2019-11-06.gi
 lrwxrwxrwx  1 sarnobat sarnobat      55 Nov 21  2019 cheat -> buildroot-arm.2019.02.6.cheat/linux-kernel-module-cheat
 ```
 -------
-# DEPRECATED. Use buildroot. I never got this fully working but 
+# 2019 DEPRECATED. Use buildroot. I never got this fully working but 
 
 ## Download
 
