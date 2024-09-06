@@ -256,7 +256,7 @@ with Buildroot it was much easier.
 2021: Not Working on ubuntu 16 (which recently reached end of life)
 2019: Worked on ubuntu 16 (when it was still supported)
 
-## Code comprehension
+## 2022 Code comprehension
 
 See also
 /Volumes/git/sarnobat.git/yEd/2020/technology/linux_boot.graphml
