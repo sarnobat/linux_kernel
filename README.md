@@ -1,4 +1,4 @@
-ƒ## Docker buildroot
+## Docker buildroot
 
 -   [2024](#section)
     -   [Docker Buildroot](#docker-buildroot)
