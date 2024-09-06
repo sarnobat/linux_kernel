@@ -1,23 +1,37 @@
 ## Docker buildroot
 
--   [(recommended) Docker buildroot](#docker-buildroot)
+-   [2024](#section)
+    -   [Docker Buildroot](#docker-buildroot)
+-   [2023](#section-1)
+    -   [Call Graph](#call-graph)
+    -   [Dependency tree](#dependency-tree)
     -   [Compilation](#compilation)
+-   [from inside the CORRECT
+    container](#from-inside-the-correct-container)
     -   [Running](#running)
--   [Docker buildroot-cheat](#docker-buildroot-cheat)
--   [Buildroot](#buildroot)
--   [Code comprehension](#code-comprehension)
-    -   [runtime log](#runtime-log)
-    -   [print statements in code](#print-statements-in-code)
--   [Old (not working)](#old-not-working)
+    -   [Docker Buildroot
+        Cheat](#docker-buildroot-cheat)
+    -   [Buildroot](#buildroot)
+    -   [2022 Code
+        comprehension](#code-comprehension)
+        -   [boot](#boot)
+        -   [runtime log](#runtime-log)
+        -   [runtime log -
+            boot](#runtime-log---boot)
+        -   [print statements in
+            code](#print-statements-in-code)
+        -   [init process](#init-process)
+-   [2022 Old (not working)](#old-not-working)
     -   [Buildroot cheat](#buildroot-cheat)
         -   [Gdb](#gdb)
         -   [My attempts](#my-attempts)
--   [DEPRECATED. Use buildroot. I never got this fully working
+-   [2019 DEPRECATED. Use buildroot. I never got this fully working
     but](#deprecated.-use-buildroot.-i-never-got-this-fully-working-but)
     -   [Download](#download)
     -   [Compilation](#compilation-1)
     -   [Running](#running-1)
-    -   [Kernel repository history](#kernel-repository-history)
+    -   [Kernel repository
+        history](#kernel-repository-history)
 
 ## 2024
 
