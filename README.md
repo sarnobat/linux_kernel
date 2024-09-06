@@ -96,7 +96,7 @@ It's fiddly trying to get userland changes to be copied into the new installatio
 1) Make sure you are running the right container (it is easier to not use `scripts/run.sh` to make sure multiple docker images aren't created)
 2) 
 ```
-# from inside the CORRECT container
+# 2022 from inside the CORRECT container
 cd /buildroot_output
 make busybox-rebuild all
 ```
