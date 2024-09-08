@@ -50,6 +50,8 @@ make
 sh output/images/start-qemu.sh
 ```
 
+Nothing needs to be changed in the menu config.
+
 Internally, the qemu command is:
 
 ```
