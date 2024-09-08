@@ -35,6 +35,9 @@
 
 ## 2024
 
+See also
+* `linux_kernel_schumatize.pdf`
+
 ### (recommended) Buildroot without Docker
 If you want to modify source code, you (probably) can't use Docker, because:
 * the Docker image doesn't contain .c files.
@@ -73,7 +76,7 @@ make linux-rebuild
 ### Docker Buildroot
 2024-08
 
-See `linux_kernel_schumatize.pdf`
+
 
 I'm not sure how to edit source code with Docker. So it might be better to use non-Docker.
 
