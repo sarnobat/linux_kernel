@@ -56,6 +56,18 @@ Internally, the qemu command is:
 qemu-system-x86_64 -M pc -kernel ./output/images/bzImage -drive file=./output/images/rootfs.ext2,if=virtio,format=raw -append "rootwait root=/dev/vda console=tty1 console=ttyS0" -net nic,model=virtio -net user -serial stdio
 ```
 
+#### Editing source
+
+```
+vi output/build/linux-6.6.32/init/main.c +/"start_kernel("
+
+     printk("SARNOBAT kernel/setup.c::start_kernel() - begin\n");
+```
+
+```
+make linux-rebuild
+```
+
 ### Docker Buildroot
 2024-08
 
