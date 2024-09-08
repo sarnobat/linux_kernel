@@ -35,6 +35,25 @@
 
 ## 2024
 
+### (recommended) Buildroot without Docker
+If you want to modify source code, you (probably) can't use Docker, because the docker image doesn't contain .c files. The Docker image is also just maintained by "Advanced Climate Systems" which could make it abandonware. The actual Buildroot project has a lot of maintainers.
+
+```
+git clone git@github.com:buildroot/buildroot.git
+
+make qemu_x86_64_defconfig menuconfig
+
+make
+
+sh output/images/start-qemu.sh
+```
+
+Internally, the qemu command is:
+
+```
+qemu-system-x86_64 -M pc -kernel ./output/images/bzImage -drive file=./output/images/rootfs.ext2,if=virtio,format=raw -append "rootwait root=/dev/vda console=tty1 console=ttyS0" -net nic,model=virtio -net user -serial stdio
+```
+
 ### Docker Buildroot
 2024-08
 
