@@ -36,7 +36,9 @@
 ## 2024
 
 ### (recommended) Buildroot without Docker
-If you want to modify source code, you (probably) can't use Docker, because the docker image doesn't contain .c files. The Docker image is also just maintained by "Advanced Climate Systems" which could make it abandonware. The actual Buildroot project has a lot of maintainers.
+If you want to modify source code, you (probably) can't use Docker, because:
+* the Docker image doesn't contain .c files.
+* the Docker image is also just maintained by "Advanced Climate Systems" which could make it abandonware. The actual Buildroot project has a lot of maintainers.
 
 ```
 git clone git@github.com:buildroot/buildroot.git
