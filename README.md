@@ -40,6 +40,8 @@
 
 See `linux_kernel_schumatize.pdf`
 
+I'm not sure how to edit source code with Docker. So it might be better to use non-Docker.
+
 Generated artifacts:
 ```
 antec Tue 06 August 2024  9:46AM> docker exec -it 39730a7dffd5 find /root/buildroot/output/images/ -ls
