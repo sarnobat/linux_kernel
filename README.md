@@ -38,6 +38,8 @@
 See also
 * `linux_kernel_schumatize.pdf`
 
+* tip: debug program calls using `ktrace` on Mac OS. `strace` on Linux
+
 ### (recommended) Buildroot without Docker
 If you want to modify source code, you (probably) can't use Docker, because:
 * the Docker image doesn't contain .c files.
