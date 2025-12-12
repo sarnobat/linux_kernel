@@ -33,6 +33,46 @@
     -   [Kernel repository
         history](#kernel-repository-history)
 
+## 2025
+
+```
++---------------------+
+|  Bootloader (GRUB)  |
+|  loads bzImage      |
++----------+----------+
+           |
+           v
++---------------------+
+| arch/x86/boot/      |
+| header.S : start    |
+| (16-bit setup)      |
++----------+----------+
+           |
+           v
++---------------------+
+| arch/x86/boot/      |
+| compressed/head_64.S|
+| startup_32          |
++----------+----------+
+           |
+           v
++---------------------+
+| arch/x86/boot/      |
+| compressed/misc.c   |
+| extract_kernel()    |
++----------+----------+
+           |
+           v
++---------------------+
+| arch/x86/kernel/    |
+| head_64.S : entry   |
++----------+----------+
+           |
+           v
++---------------------+
+| start_kernel() etc. |
++---------------------+
+```
 ## 2024
 
 See also
