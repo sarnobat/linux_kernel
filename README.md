@@ -35,22 +35,23 @@
 
 ## 2025
 
-```shell
+
 If you instrumented each stage in order, the first handful of messages you’d see once the bootloader hands off to the kernel would look something like this (names based on actual entry points):
 
-[arch/x86/boot/header.S] start: 16-bit setup entry
-[arch/x86/boot/header.S] protected_mode_jump: entering 32-bit mode
-[arch/x86/boot/compressed/head_64.S] startup_32: begin
-[arch/x86/boot/compressed/head_64.S] startup_32: verified long mode support
-[arch/x86/boot/compressed/head_64.S] startup_32: set up GDT/stack, jumping to 64-bit
-[arch/x86/boot/compressed/head_64.S] load_gdt: GDT loaded, switching to long mode
-[arch/x86/boot/compressed/head_64.S] trampoline_32bit_src: toggled paging levels
-[arch/x86/boot/compressed/misc.c] extract_kernel(): start decompression
-[arch/x86/boot/compressed/misc.c] decompress_kernel(): relocating kernel image
+```shell
+[arch/x86/boot/header.S                 ] start                    : 16-bit setup entry
+[arch/x86/boot/header.S                 ] protected_mode_jump      : entering 32-bit mode
+[arch/x86/boot/compressed/head_64.S     ] startup_32               : begin
+[arch/x86/boot/compressed/head_64.S     ] startup_32               : verified long mode support
+[arch/x86/boot/compressed/head_64.S 	] startup_32               : set up GDT/stack, jumping to 64-bit
+[arch/x86/boot/compressed/head_64.S     ] load_gdt                 : GDT loaded, switching to long mode
+[arch/x86/boot/compressed/head_64.S     ] trampoline_32bit_src     : toggled paging levels
+[arch/x86/boot/compressed/misc.c        ] extract_kernel()         : start decompression
 ...
-[arch/x86/kernel/head_64.S] startup_64: entered uncompressed kernel
-[arch/x86/kernel/head64.c] x86_64_start_kernel(): handing off to generic init
-[init/main.c] start_kernel(): begin
+[arch/x86/boot/compressed/misc.c        ] decompress_kernel()      : relocating kernel image
+[arch/x86/kernel/head_64.S              ] startup_64               : entered uncompressed kernel
+[arch/x86/kernel/head64.c               ] x86_64_start_kernel()    : handing off to generic init
+[init/main.c                            ] start_kernel()           : begin
 ```
 
 ```
