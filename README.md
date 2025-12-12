@@ -35,6 +35,26 @@
 
 ## 2025
 
+```shell
+If you instrumented each stage in order, the first handful of messages you’d see once the bootloader hands off to the kernel would look something like this (names based on actual entry points):
+
+[bootloader] bzImage loaded @0x100000, jumping to arch/x86/boot/header.S:start
+[header.S] start: 16-bit setup entry
+[header.S] protected_mode_jump: entering 32-bit mode
+[head_64.S] startup_32: begin
+[head_64.S] startup_32: verified long mode support
+[head_64.S] startup_32: set up GDT/stack, jumping to 64-bit
+[head_64.S] load_gdt: GDT loaded, switching to long mode
+[head_64.S] trampoline_32bit_src: toggled paging levels
+[misc.c] extract_kernel(): start decompression
+[misc.c] decompress_kernel(): relocating kernel image
+...
+After the decompressor finishes:
+[head_64.S] startup_64: entered uncompressed kernel
+[head64.c] x86_64_start_kernel(): building per-CPU state
+[start_kernel.c] start_kernel(): initializing subsystems
+```
+
 ```
 +---------------------+
 |  Bootloader (GRUB)  |
