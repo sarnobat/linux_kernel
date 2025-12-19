@@ -47,7 +47,6 @@ If you instrumented each stage in order, the first handful of messages you’d s
 [arch/x86/boot/compressed/head_64.S     ] load_gdt                 : GDT loaded, switching to long mode
 [arch/x86/boot/compressed/head_64.S     ] trampoline_32bit_src     : toggled paging levels
 [arch/x86/boot/compressed/misc.c        ] extract_kernel()         : start decompression
-...
 [arch/x86/boot/compressed/misc.c        ] decompress_kernel()      : relocating kernel image
 [arch/x86/kernel/head_64.S              ] startup_64               : entered uncompressed kernel
 [arch/x86/kernel/head64.c               ] x86_64_start_kernel()    : handing off to generic init
