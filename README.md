@@ -72,6 +72,7 @@ Command line: console=ttyS0 rdinit=/init debug
 [trace] SRIDHAR kernel/sched/core.c:8370 sched_init() stmt5 g�
 [trace] SRIDHAR fs/dcache.c:3227 vfs_caches_init() stmt4:
 [trace] SRIDHAR init/main.c:1368 do_initcalls() stmt7 - is this where the network gets set up? (efault)
+[trace] SRIDHAR init/initramfs.c:705 do_populate_rootfs() Unpacking initramfs...
 [trace] SRIDHAR init/main.c:1588 console_on_rootfs() /dev/console
 [trace] SRIDHAR init/main.c:1509 kernel_init() system_state = SYSTEM_FREEING_INITMEM
 [trace] SRIDHAR init/main.c:1529 kernel_init() system_state = SYSTEM_RUNNING
