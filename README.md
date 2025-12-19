@@ -38,6 +38,7 @@
 
 If you instrumented each stage in order, the first handful of messages you’d see once the bootloader hands off to the kernel would look something like this (names based on actual entry points):
 
+Hypothetical:
 ```shell
 [arch/x86/boot/header.S                 ] start                    : 16-bit setup entry
 [arch/x86/boot/header.S                 ] protected_mode_jump      : entering 32-bit mode
@@ -59,6 +60,15 @@ If you instrumented each stage in order, the first handful of messages you’d s
 [kernel/sched/core.c                    ] init_idle()              : attach initial struct task_struct to per-CPU runqueue
 [init/main.c                            ] kernel_init()            : begin
 [init/main.c                            ] run_init_process()       : attempting /sbin/init
+```
+
+Actual that I was able to compile:
+```shell
+[trace] SRIDHAR init/main.c:925 start_kernel() Linux version 6.12.0-dirty (root@f1634a6aa9de) (x86_64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, GNU ld (G5
+[trace] SRIDHAR init/main.c:933 start_kernel() stmt1: (null)
+Command line: console=ttyS0 rdinit=/init debug
+[trace] SRIDHAR init/main.c:959 start_kernel() Kernel command line: console=ttyS0 rdinit=/init debug
+[trace] SRIDHAR init/main.c:1412 run_init_process() Run /init as init process
 ```
 
 ```
