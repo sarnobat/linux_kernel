@@ -52,6 +52,7 @@ If you instrumented each stage in order, the first handful of messages you’d s
 [arch/x86/kernel/head_64.S              ] startup_64               : entered uncompressed kernel
 [arch/x86/kernel/head64.c               ] x86_64_start_kernel()    : handing off to generic init
 [init/main.c                            ] start_kernel()           : begin
+[kernel/sched/core.c                    ] sched_init()             : for_each_possible_cpu init per-CPU runqueue (struct rq)
 [init/main.c                            ] rest_init()              : begin
 [init/main.c                            ] kernel_init()            : begin
 [init/main.c                            ] run_init_process()       : attempting /sbin/init
