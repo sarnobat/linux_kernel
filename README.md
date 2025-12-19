@@ -68,6 +68,9 @@ Actual that I was able to compile:
 [trace] SRIDHAR init/main.c:933 start_kernel() stmt1: (null)
 Command line: console=ttyS0 rdinit=/init debug
 [trace] SRIDHAR init/main.c:959 start_kernel() Kernel command line: console=ttyS0 rdinit=/init debug
+[trace] SRIDHAR mm/mm_init.c:2639 mm_core_init() stmt3:
+[trace] SRIDHAR kernel/sched/core.c:8370 sched_init() stmt5 g�
+[trace] SRIDHAR fs/dcache.c:3227 vfs_caches_init() stmt4:
 [trace] SRIDHAR init/main.c:1412 run_init_process() Run /init as init process
 ```
 
