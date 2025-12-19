@@ -53,8 +53,11 @@ If you instrumented each stage in order, the first handful of messages you’d s
 [arch/x86/kernel/head64.c               ] x86_64_start_kernel()    : handing off to generic init
 [init/main.c                            ] start_kernel()           : begin
 [mm/page_alloc.c                        ] page_alloc_init()        : initialize physical page allocator (free page lists)
+[mm/mm_init.c                           ] mm_init()                : initialize and populate kernel struct mm_struct (init_mm)
 [kernel/sched/core.c                    ] sched_init()             : for_each_possible_cpu init per-CPU runqueue (struct rq)
+[fs/inode.c                             ] inode_init()             : initialize struct inode objects and global inode cache
 [init/main.c                            ] rest_init()              : begin
+[kernel/sched/core.c                    ] init_idle()              : attach initial struct task_struct to per-CPU runqueue
 [init/main.c                            ] kernel_init()            : begin
 [init/main.c                            ] run_init_process()       : attempting /sbin/init
 ```
