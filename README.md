@@ -67,6 +67,8 @@ Actual that I was able to compile:
 [trace] SRIDHAR init/main.c:925 start_kernel() Linux version 6.12.0-dirty (root@f1634a6aa9de) (x86_64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, GNU ld (G5
 [trace] SRIDHAR init/main.c:933 start_kernel() stmt1: (null)
 Command line: console=ttyS0 rdinit=/init debug
+[trace] SRIDHAR arch/x86/kernel/setup.c:1029 setup_arch() stmt2:
+[trace] SRIDHAR init/main.c:489 setup_boot_config() begin: (null)
 [trace] SRIDHAR init/main.c:959 start_kernel() Kernel command line: console=ttyS0 rdinit=/init debug
 [trace] SRIDHAR mm/mm_init.c:2639 mm_core_init() stmt3:
 [trace] SRIDHAR kernel/sched/core.c:8370 sched_init() stmt5 g�
