@@ -73,12 +73,30 @@ Command line: console=ttyS0 rdinit=/init debug
 [trace] SRIDHAR mm/mm_init.c:2639 mm_core_init() stmt3:
 [trace] SRIDHAR kernel/sched/core.c:8370 sched_init() stmt5 g�
 [trace] SRIDHAR fs/dcache.c:3227 vfs_caches_init() stmt4:
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() userspace task pid=1 comm=swapper task=(____ptrval____)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=2 comm=swapper task=(____ptrval____)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=3 comm=pool_workqueue_ task=(____ptrval____)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=4 comm=kworker/0:0 task=(____ptrval____)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=5 comm=kworker/0:0H task=(____ptrval____)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=6 comm=kworker/0:1 task=(____ptrval____)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=7 comm=kworker/u4:0 task=(____ptrval____)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=8 comm=kworker/R-mm_pe task=(____ptrval____)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=9 comm=ksoftirqd/0 task=(____ptrval____)
+[trace] SRIDHAR kernel/sched/core.c:6884 preempt_schedule_common() pid=1 (swapper) preempt=0x0
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=10 comm=kdevtmpfs task=(____ptrval____)
 [trace] SRIDHAR init/main.c:1368 do_initcalls() stmt7 - is this where the network gets set up? (efault)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=11 comm=oom_reaper task=(____ptrval____)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=12 comm=kworker/R-write task=(____ptrval____)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=13 comm=kswapd0 task=(____ptrval____)
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=14 comm=kworker/u4:1 task=(____ptrval____)
 [trace] SRIDHAR init/initramfs.c:705 do_populate_rootfs() Unpacking initramfs...
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=15 comm=kworker/u4:2 task=(____ptrval____)
 [trace] SRIDHAR init/main.c:1588 console_on_rootfs() /dev/console
 [trace] SRIDHAR init/main.c:1509 kernel_init() system_state = SYSTEM_FREEING_INITMEM
 [trace] SRIDHAR init/main.c:1529 kernel_init() system_state = SYSTEM_RUNNING
 [trace] SRIDHAR init/main.c:1412 run_init_process() Run /init as init process
+[trace] SRIDHAR kernel/sched/core.c:6884 preempt_schedule_common() pid=1 (swapper) preempt=0x0
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() kernel thread pid=16 comm=kworker/0:2 task=(____ptrval____)
 ```
 
 ```
