@@ -35,6 +35,23 @@
 
 ## 2025
 
+### Process creation system call
+
+```
+sys_clone3()                         [kernel/fork.c]
+  → __do_sys_clone3()                [kernel/fork.c]
+    → kernel_clone()                 [kernel/fork.c]
+      → copy_process()               [kernel/fork.c]
+        → dup_task_struct()          [kernel/fork.c]
+          → alloc_task_struct()      [kernel/fork.c]
+        → copy_mm()                  [kernel/fork.c]
+        → copy_files()               [kernel/fork.c]
+        → copy_fs()                  [kernel/fork.c]
+        → copy_sighand()             [kernel/fork.c]
+        → copy_signal()              [kernel/fork.c]
+      → wake_up_new_task()            [kernel/sched/core.c]
+
+```
 ### File creation system call
 
 ```
@@ -77,6 +94,40 @@ sys_openat()                          [fs/open.c]
                   → alloc_inode()     [fs/inode.c]
                   → insert_inode_hash()[fs/inode.c]
 ```
+
+### Reading file content
+
+```
+sys_read()                           [fs/read_write.c]
+  → ksys_read()                      [fs/read_write.c]
+    → vfs_read()                     [fs/read_write.c]
+      → file->f_op->read_iter()      [fs/read_write.c]
+        → generic_file_read_iter()   [mm/filemap.c]
+          → filemap_read()           [mm/filemap.c]
+            → pagecache_get_page()   [mm/filemap.c]
+               (miss)
+              → readpage()           [fs/ext4/inode.c]      (ext4)
+                 OR
+                → ramfs_readpage()   [fs/ramfs/inode.c]     (ramfs)
+```
+
+### Sending a network packet
+
+```
+sys_sendto()                         [net/socket.c]
+  → __sys_sendto()                   [net/socket.c]
+    → sock_sendmsg()                 [net/socket.c]
+      → sock->ops->sendmsg()         [net/ipv4/af_inet.c]
+        → inet_sendmsg()
+          → tcp_sendmsg()            [net/ipv4/tcp.c]        (TCP)
+             OR
+            udp_sendmsg()            [net/ipv4/udp.c]        (UDP)
+              → ip_queue_xmit()      [net/ipv4/ip_output.c]
+                → dev_queue_xmit()   [net/core/dev.c]
+```
+
+
+
 ### Boot
 If you instrumented each stage in order, the first handful of messages you’d see once the bootloader hands off to the kernel would look something like this (names based on actual entry points):
 
