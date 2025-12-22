@@ -35,7 +35,35 @@
 
 ## 2025
 
+### File creation system call
 
+```
+~ # touch test.txt
+[trace] SRIDHAR kernel/fork.c:2598 copy_process() userspace task pid=15 comm=sh task=(____ptrval____)
+[trace] SRIDHAR fs/dcache.c:1672 __d_alloc() Copying filename to struct test.txt
+[trace] SRIDHAR fs/open.c:1456 __do_sys_openat() got a system call to create a file test.txt
+[trace] SRIDHAR fs/open.c:1402 do_sys_openat2() got a system call to create a file test.txt
+[trace] SRIDHAR fs/dcache.c:1672 __d_alloc() Copying filename to struct test.txt
+```
+
+Hypothetical:
+
+```
+sys_openat()                          [fs/open.c]
+  → do_sys_openat2()                  [fs/open.c]
+    → do_filp_open()                  [fs/open.c]
+      → path_openat()                 [fs/namei.c]
+        → vfs_create()                [fs/namei.c]
+          → inode->i_op->create()     [fs/ramfs/inode.c]
+            → ramfs_create()
+              → ramfs_get_inode()     [fs/ramfs/inode.c]
+                → new_inode()         [fs/inode.c]
+                  → alloc_inode()     [fs/inode.c]
+                  → insert_inode_hash()[fs/inode.c]
+
+```
+
+### Boot
 If you instrumented each stage in order, the first handful of messages you’d see once the bootloader hands off to the kernel would look something like this (names based on actual entry points):
 
 Hypothetical:
