@@ -46,7 +46,7 @@
 [trace] SRIDHAR fs/dcache.c:1672 __d_alloc() Copying filename to struct test.txt
 ```
 
-Hypothetical:
+Hypothetical (ramfs):
 
 ```
 sys_openat()                          [fs/open.c]
@@ -63,6 +63,20 @@ sys_openat()                          [fs/open.c]
 
 ```
 
+Hypothetical (ext4):
+```
+sys_openat()                          [fs/open.c]
+  → do_sys_openat2()                  [fs/open.c]
+    → do_filp_open()                  [fs/open.c]
+      → path_openat()                 [fs/namei.c]
+        → vfs_create()                [fs/namei.c]
+          → inode->i_op->create()     [fs/ext4/namei.c]
+            → ext4_create()
+              → ext4_new_inode()      [fs/ext4/ialloc.c]
+                → new_inode()         [fs/inode.c]
+                  → alloc_inode()     [fs/inode.c]
+                  → insert_inode_hash()[fs/inode.c]
+```
 ### Boot
 If you instrumented each stage in order, the first handful of messages you’d see once the bootloader hands off to the kernel would look something like this (names based on actual entry points):
 
